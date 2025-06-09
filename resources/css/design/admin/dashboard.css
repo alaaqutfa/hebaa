@@ -1,0 +1,15 @@
+/** Dashboard **/
+
+.admin-content #main .container {
+  @apply px-6 mx-auto grid;
+}
+
+.dashboard-cards {
+  @apply grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4;
+}
+
+.dashboard-cards .card {
+  @apply flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm dark:bg-gray-800;
+}
+
+/** Dashboard End **/

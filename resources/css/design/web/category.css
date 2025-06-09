@@ -1,0 +1,15 @@
+/** Category **/
+
+.category-row {
+  @apply flex flex-wrap;
+}
+
+.category-row-side {
+  @apply w-full lg:w-8/12 px-2;
+}
+
+.category-row-sidebar {
+  @apply w-full lg:w-4/12 px-2;
+}
+
+/** Category End **/

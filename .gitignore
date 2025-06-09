@@ -1,0 +1,65 @@
+# Laravel folders
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+/storage/oauth-private.key
+/storage/oauth-public.key
+/storage/pail
+/storage/logs
+/storage/framework
+/bootstrap/cache
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDEs & Editors
+/.idea
+/.vscode
+/.phpstorm.meta.php
+/.fleet
+/.zed
+
+# PHPUnit
+.phpunit.result.cache
+/.phpunit.cache
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Composer related
+composer.lock
+
+# npm / yarn logs
+npm-debug.log
+yarn-error.log
+
+# Laravel Nova (if used)
+/.nova
+
+# Laravel Telescope (if used)
+/telescope
+
+# Laravel Horizon (if used)
+/horizon
+
+# Build files
+/public/hot
+/public/build
+
+# Auth & secrets
+auth.json
+
+# Other temp
+.phpactor.json
+Homestead.yaml
+Homestead.json
+
+# Optional: ignore backup files
+*.log
+*.bak
+*.tmp
+*.swp

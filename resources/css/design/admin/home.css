@@ -1,0 +1,11 @@
+/** Home **/
+
+.blog-item {
+  @apply relative;
+}
+
+.edit-hero-btn {
+  @apply absolute z-10 top-2 ltr:right-2 rtl:left-2 p-2 rounded bg-gray-200 hover:bg-gray-400 dark:bg-gray-400 dark:hover:bg-gray-600 text-gray-600 hover:text-gray-300 dark:text-gray-800 dark:hover:text-gray-900;
+}
+
+/** Home End **/

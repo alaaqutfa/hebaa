@@ -1,0 +1,19 @@
+/** Header **/
+
+header.web {
+  @apply relative;
+}
+
+header.web .container {
+  @apply mx-auto px-4 relative;
+}
+
+header.web .container .top-row {
+  @apply py-4 flex justify-between items-center;
+}
+
+header.web .container .top-row .logo {
+  @apply flex items-end;
+}
+
+/** Header End **/

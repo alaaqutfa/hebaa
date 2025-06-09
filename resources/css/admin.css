@@ -1,0 +1,7 @@
+@import "./design/global.css";
+@import "./design/admin/header.css";
+@import "./design/admin/aside.css";
+@import "./design/admin/dashboard.css";
+@import "./design/admin/tables.css";
+@import "./design/admin/categories.css";
+@import "./design/admin/home.css";

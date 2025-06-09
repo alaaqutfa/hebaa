@@ -1,0 +1,99 @@
+/** Auth Layout **/
+
+.auth-card {
+  @apply flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900;
+}
+
+.auth-card-container {
+  @apply flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800;
+}
+
+.auth-card-content {
+  @apply flex flex-col overflow-y-auto md:flex-row;
+}
+
+.auth-card-content .img {
+  @apply h-32 md:h-auto md:w-1/2;
+}
+
+.auth-card-content .img img {
+  @apply object-cover w-full h-full;
+}
+
+.auth-card-content .content {
+  @apply flex items-center justify-center flex-col p-6 sm:p-12 md:w-1/2;
+}
+
+.auth-form {
+  @apply w-full;
+}
+
+.auth-form h1 {
+  @apply mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200;
+}
+
+.auth-form label {
+  @apply block text-sm;
+}
+
+.auth-form label.phone-label {
+  @apply mt-4 flex justify-start items-start flex-col;
+}
+
+.auth-form label.phone-label > .iti {
+  @apply w-full mt-1;
+}
+
+.auth-form label span:not(.validate-msg) {
+  @apply text-gray-700 dark:text-gray-400;
+}
+
+.auth-form input:not([type="checkbox"]) {
+  @apply block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input;
+}
+
+.auth-form .iconed-input {
+  @apply relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400;
+}
+
+.auth-form .iconed-input input {
+  @apply block w-full pr-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input;
+}
+
+.auth-form .iconed-input .icon {
+  @apply cursor-pointer absolute inset-y-0 rtl:left-0 ltr:right-0 flex items-center ltr:mr-3 rtl:ml-3 focus:border-none focus:ring-0 focus:outline-none;
+}
+
+.auth-form .iconed-input .icon svg path {
+  @apply fill-gray-500 dark:fill-gray-800;
+}
+
+.auth-form .iconed-input.show .icon svg path {
+  @apply fill-purple-600 dark:fill-purple-400;
+}
+
+.auth-form input[type="checkbox"] {
+  @apply text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray;
+}
+
+.auth-form .submit {
+  @apply block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple;
+}
+
+.auth-form > p > a {
+  @apply text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline;
+}
+
+.auth-form .verify-msg {
+  @apply mb-4 text-sm text-green-600 dark:text-green-400;
+}
+
+.iti--separate-dial-code .iti__selected-dial-code {
+  @apply text-gray-700 dark:text-gray-400;
+}
+
+.auth-form .multi-label {
+  @apply w-full flex justify-between items-center gap-2;
+}
+
+/** Auth Layout End **/

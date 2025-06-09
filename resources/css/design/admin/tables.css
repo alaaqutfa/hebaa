@@ -1,0 +1,32 @@
+/** Tables **/
+
+.table-wrapper {
+  @apply w-full overflow-hidden rounded-lg shadow-sm;
+}
+
+.table-container {
+  @apply w-full overflow-x-auto;
+}
+
+.table-container table {
+  @apply w-full;
+}
+
+.table-container table thead tr {
+  @apply text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800;
+}
+
+.table-container table tbody {
+  @apply bg-white divide-y dark:divide-gray-700 dark:bg-gray-800;
+}
+
+.table-container table tbody tr {
+  @apply text-gray-700 dark:text-gray-400;
+}
+
+.table-container table thead tr th,
+.table-container table tbody tr td {
+  @apply px-4 py-3 text-center;
+}
+
+/** Tables End **/
