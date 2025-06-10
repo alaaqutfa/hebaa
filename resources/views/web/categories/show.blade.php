@@ -34,8 +34,8 @@
                                         <p class="post-category">{{ translation($category->name) }}</p>
 
                                         <h2 class="title">
-                                            <a
-                                                href="{{ route('project.show', $project->slug) }}" class="line-clamp">{{ translation($project->title) }}</a>
+                                            <a href="{{ route('project.show', $project->slug) }}"
+                                                class="line-clamp">{{ translation($project->title) }}</a>
                                         </h2>
 
                                         <div class="d-flex align-items-center">
@@ -87,10 +87,16 @@
                     <!-- Search Widget -->
                     <div class="search-widget widget-item">
 
-                        <h3 class="widget-title">Search</h3>
+                        <h3 class="widget-title">{{ translation('Search') }}</h3>
                         <form action="">
-                            <input type="text">
-                            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                            <input type="search" class="w-full focus:border-none focus:outline-none focus:ring-0" />
+                            <button type="submit" title="{{ translation('Search') }}">
+                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
                         </form>
 
                     </div><!--/Search Widget -->

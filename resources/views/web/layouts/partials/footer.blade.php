@@ -4,13 +4,13 @@
         <div class="flex">
             <div class="w-4/12 md:w-1/2 footer-about">
                 <a href="index.html" class="logo flex items-center">
-                    <img src="assets/img/logo.png" alt="Hebaa-logo" />
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Hebaa-logo" />
                 </a>
                 <div class="footer-contact pt-3">
-                    <p>A108 Adam Street</p>
-                    <p>New York, NY 535022</p>
-                    <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                    <p><strong>Email:</strong> <span>info@hebaa.org</span></p>
+                    <p>Iraq, Erbil</p>
+                    <p>Erbil, 100m str</p>
+                    <p class="mt-3"><strong>{{ translation('Phone:') }}</strong> <span>+1 5589 55488 55</span></p>
+                    <p><strong>{{ translation('Email:') }}</strong> <span>info@hebaa.org</span></p>
                 </div>
                 <div class="social-links flex mt-4">
                     <a href="https://ar-ar.facebook.com/hebaa.org" class="facebook">
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="w-auto footer-links">
+            <div class="w-auto footer-links hidden">
                 <h4>{{ translation('Useful Links') }}</h4>
                 <ul>
                     <li>
@@ -65,12 +65,14 @@
             <div class="w-auto footer-links">
                 <h4>{{ translation('Categories') }}</h4>
                 <ul>
+                    <li>|</li>
                     @foreach (getCategory() as $category)
                         <li>
                             <a href="{{ route('category.show', $category->slug) }}">
                                 {{ translation($category->name) }}
                             </a>
                         </li>
+                        <li>|</li>
                     @endforeach
                 </ul>
             </div>

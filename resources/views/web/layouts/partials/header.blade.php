@@ -1,12 +1,21 @@
   <header id="header" class="web header">
-      <div class="container">
+      <div class="container mx-auto">
 
           <div class="top-row">
               <a href="index.html" class="logo">
                   <img src="{{ asset('assets/img/logo.png') }}" alt="شعار حباء" />
               </a>
 
-              <div class="flex items-center">
+              <!-- Mobile hamburger -->
+              <button class="hamburger" @click="toggleSideMenu" aria-label="Menu">
+                  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd"
+                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                          clip-rule="evenodd"></path>
+                  </svg>
+              </button>
+
+              <div class="web-nav">
                   <div class="social-links flex justify-center items-center">
                       <a href="https://ar-ar.facebook.com/hebaa.org" class="facebook">
                           <svg xmlns="http://www.w3.org/2000/svg" height="28" width="28" fill="currentColor"
@@ -68,13 +77,21 @@
                           </button>
                       </label>
                   </form>
+
+                  <div class="header-auth">
+
+                      <a href="{{ route('auth.get.register') }}" class="register-btn">{{ translation('Register') }}</a>
+
+                      <a href="{{ route('auth.get.login') }}" class="login-btn">{{ translation('Log in') }}</a>
+
+                  </div>
               </div>
           </div>
 
       </div>
 
-      <div class="nav-wrap">
-          <div class="container flex justify-center relative">
+      <div class="nav-wrap w-full">
+          <div class="container flex justify-center items-center gap-4 relative">
               <nav id="navmenu" class="navmenu">
                   <ul>
                       <li><a href="{{ route('home') }}">{{ translation('Home') }}</a></li>

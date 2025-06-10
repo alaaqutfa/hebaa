@@ -93,17 +93,41 @@
                                     <div class="share-section">
                                         <h4>Share Article</h4>
                                         <div class="social-links">
-                                            <a href="#" class="twitter">
-                                                <i class="bi bi-twitter-x"></i>
+                                            <a href="https://ar-ar.facebook.com/hebaa.org" class="facebook">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+                                                    fill="currentColor" viewBox="0 0 512 512">
+                                                    <path
+                                                        d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z" />
+                                                </svg>
                                             </a>
-                                            <a href="#" class="facebook">
-                                                <i class="bi bi-facebook"></i>
+                                            <a href="https://x.com/hebaaorg?lang=ar" class="twitter">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+                                                    fill="currentColor" viewBox="0 0 512 512">
+                                                    <path
+                                                        d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+                                                </svg>
                                             </a>
-                                            <a href="#" class="linkedin">
-                                                <i class="bi bi-linkedin"></i>
+                                            <a href="https://www.instagram.com/hebaaorganization" class="instagram">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="20"
+                                                    fill="currentColor" viewBox="0 0 448 512">
+                                                    <path
+                                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                                </svg>
                                             </a>
-                                            <a href="#" class="copy-link" title="Copy Link">
-                                                <i class="bi bi-link-45deg"></i>
+                                            <a href="https://www.youtube.com/channel/UCs6InoL4GrRRtAryl5Pqx8A"
+                                                class="youtube">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="28"
+                                                    fill="currentColor" viewBox="0 0 576 512">
+                                                    <path
+                                                        d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z" />
+                                                </svg>
+                                            </a>
+                                            <a href="https://www.tiktok.com/@hebaafoundation" class="tiktok">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="20"
+                                                    fill="currentColor" viewBox="0 0 448 512">
+                                                    <path
+                                                        d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
+                                                </svg>
                                             </a>
                                         </div>
                                     </div>
@@ -333,42 +357,43 @@
                 <!-- Blog Comment Form Section -->
                 <section id="blog-comment-form" class="blog-comment-form section">
 
-                    <div class="container" data-aos="fade-up" data-aos-delay="100">
+                    <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
 
                         <form method="post" role="form">
 
                             <div class="section-header">
-                                <h3>Share Your Thoughts</h3>
-                                <p>Your email address will not be published. Required fields are marked *</p>
+                                <h3>{{ translation('Share Your Thoughts') }}</h3>
+                                <p>
+                                    {{ translation('Your email address will not be published. Required fields are marked *') }}
+                                </p>
                             </div>
 
-                            <div class="row gy-3">
-                                <div class="col-md-6 form-group">
-                                    <label for="name">Full Name *</label>
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Enter your full name" required="">
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="flex flex-col">
+                                    <label for="name" class="mb-1 font-medium">{{ translation('Full Name') }} *</label>
+                                    <input type="text" name="name" id="name" required
+                                        placeholder="{{ translation('Enter your full name') }}"
+                                        class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
 
-                                <div class="col-md-6 form-group">
-                                    <label for="email">Email Address *</label>
-                                    <input type="email" name="email" class="form-control" id="email"
-                                        placeholder="Enter your email address" required="">
+                                <div class="flex flex-col">
+                                    <label for="email" class="mb-1 font-medium">{{ translation('Email Address') }}
+                                        *</label>
+                                    <input type="email" name="email" id="email" required
+                                        placeholder="{{ translation('Enter your email address') }}"
+                                        class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
 
-                                <div class="col-12 form-group">
-                                    <label for="website">Website</label>
-                                    <input type="url" name="website" class="form-control" id="website"
-                                        placeholder="Your website (optional)">
+                                <div class="col-span-1 flex flex-col">
+                                    <label for="comment" class="mb-1 font-medium">Your Comment *</label>
+                                    <textarea name="comment" id="comment" rows="5" required placeholder="Write your thoughts here..."
+                                        class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                                 </div>
 
-                                <div class="col-12 form-group">
-                                    <label for="comment">Your Comment *</label>
-                                    <textarea class="form-control" name="comment" id="comment" rows="5" placeholder="Write your thoughts here..."
-                                        required=""></textarea>
-                                </div>
-
-                                <div class="col-12 text-center">
-                                    <button type="submit" class="btn-submit">Post Comment</button>
+                                <div class="col-span-1 text-center">
+                                    <button type="submit" class="btn-submit">
+                                        Post Comment
+                                    </button>
                                 </div>
                             </div>
 
@@ -387,11 +412,15 @@
                     <!-- Search Widget -->
                     <div class="search-widget widget-item">
 
-                        <h3 class="widget-title">Search</h3>
+                        <h3 class="widget-title">{{ translation('Search') }}</h3>
                         <form action="">
-                            <input type="search">
-                            <button type="submit" title="Search">
-                                <i class="bi bi-search"></i>
+                            <input type="search" class="w-full focus:border-none focus:outline-none focus:ring-0" />
+                            <button type="submit" title="{{ translation('Search') }}">
+                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
                             </button>
                         </form>
 

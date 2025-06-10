@@ -39,6 +39,7 @@
                     </template>
                 </button>
             </li>
+            <!-- languages-list -->
             <li class="languages">
                 <select onchange="location.href=this.value">
                     @foreach (getLanguage() as $lang)
@@ -48,7 +49,7 @@
                         </option>
                     @endforeach
                 </select>
-              </li>
+            </li>
             <!-- Notifications menu -->
             <li class="notifications-menu">
                 <button @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu"

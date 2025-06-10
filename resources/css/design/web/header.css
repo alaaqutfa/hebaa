@@ -1,7 +1,11 @@
 /** Header **/
 
 header.web {
-  @apply relative;
+  @apply lg:pt-4 fixed top-0 left-0 bg-white dark:bg-gray-600 z-20 w-full h-[100px] lg:h-[150px] shadow flex justify-center items-center flex-row lg:flex-col;
+}
+
+header.web .hamburger {
+  @apply md:hidden;
 }
 
 header.web .container {
@@ -9,11 +13,31 @@ header.web .container {
 }
 
 header.web .container .top-row {
-  @apply py-4 flex justify-between items-center;
+  @apply flex justify-between items-center;
 }
 
 header.web .container .top-row .logo {
   @apply flex items-end;
+}
+
+.web-nav {
+  @apply fixed top-[100px] md:static hidden md:flex items-center flex-col md:flex-row gap-2;
+}
+
+.web-nav > div {
+  @apply flex-col md:flex-row;
+}
+
+.header-auth {
+  @apply flex justify-center items-center gap-2;
+}
+
+.header-auth > a {
+  @apply min-w-[8rem] text-center p-2 border border-solid border-[#008d36] rounded-lg text-[#008d36] hover:text-white hover:bg-[#008d36];
+}
+
+.nav-wrap {
+  @apply hidden lg:flex;
 }
 
 /** Header End **/
