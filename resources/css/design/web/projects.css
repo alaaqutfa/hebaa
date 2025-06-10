@@ -16,4 +16,12 @@
   @apply w-full lg:w-4/12 px-2;
 }
 
+.read-more {
+  @apply gap-2;
+}
+
+.read-more i {
+  @apply ltr:transform ltr:-scale-100;
+}
+
 /** Projects End **/

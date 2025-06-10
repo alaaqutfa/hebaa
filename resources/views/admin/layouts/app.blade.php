@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html :class="dark ? 'dark' : ''" dir="rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html :class="dark ? 'dark' : ''" dir="{{ session('lang_direction', 'rtl') }}" lang="{{ session('lang_code', 'en') }}">
 
 <head>
     <meta charset="UTF-8">
@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/admin/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/web/main.css') }}" />
     @stack('links')
+
+    <style>
+        * {
+            font-family: {!! session('lang_direction') == 'rtl' ? "'Tajawal'" : "'Merriweather'" !!};
+        }
+    </style>
 
     <!-- Scripts -->
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
@@ -68,6 +74,10 @@
     <script src="{{ asset('assets/js/admin/app.js') }}"></script>
     <script src="{{ asset('assets/js/web/main.js') }}"></script>
     <script>
+        @if (session('success'))
+            showToast("{{ translation(session('success')) }}", 'success');
+        @endif
+
         @if (session('message'))
             showToast("{{ translation(session('message')) }}", 'success');
         @endif

@@ -1,10 +1,27 @@
 <?php
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Language;
 use App\Models\Setting;
 use App\Models\Translation;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\App;
+
+if (! function_exists('getLanguage')) {
+    function getLanguage()
+    {
+        return Language::all();
+    }
+}
+
+if (! function_exists('getByLocale')) {
+    function getByLocale($locale)
+    {
+        return Translation::where('locale', $locale)
+            ->orderBy('key')
+            ->pluck('value', 'key');
+    }
+}
 
 if (! function_exists('getCategory')) {
     function getCategory()
@@ -53,10 +70,9 @@ if (! function_exists('contentTranslation')) {
     function contentTranslation($key, $defaultValue, $locale = null)
     {
         $locale  = $locale ?: App::getLocale();
-        $fullKey = 'content_' . $key;
 
         $translation = Translation::firstOrCreate(
-            ['key' => $fullKey, 'locale' => $locale],
+            ['key' => 'content_' . $key, 'locale' => $locale],
             ['value' => $defaultValue]
         );
 

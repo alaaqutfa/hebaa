@@ -98,7 +98,7 @@
                     <!-- Categories Widget -->
                     <div class="categories-widget widget-item">
 
-                        <h3 class="widget-title">Categories</h3>
+                        <h3 class="widget-title">{{ translation('Categories') }}</h3>
                         <ul class="mt-3">
                             @foreach (getCategory() as $category)
                                 <li>

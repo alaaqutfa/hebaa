@@ -1,4 +1,4 @@
-<header class="admin">
+<header id="header" class="admin">
     <div class="container">
         <!-- Mobile hamburger -->
         <button class="hamburger" @click="toggleSideMenu" aria-label="Menu">
@@ -39,6 +39,16 @@
                     </template>
                 </button>
             </li>
+            <li class="languages">
+                <select onchange="location.href=this.value">
+                    @foreach (getLanguage() as $lang)
+                        <option value="{{ route('languages.switch', $lang->code) }}"
+                            @if (app()->getLocale() === $lang->code) selected @endif>
+                            {{ $lang->name }}
+                        </option>
+                    @endforeach
+                </select>
+              </li>
             <!-- Notifications menu -->
             <li class="notifications-menu">
                 <button @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu"
@@ -85,8 +95,7 @@
                 <template v-if="isProfileMenuOpen">
                     <transition name="fade">
                         <ul v-if="isProfileMenuOpen" @click.self="closeProfileMenu" @keydown.esc="closeProfileMenu"
-                            class="profile-menu-list"
-                            aria-label="submenu">
+                            class="profile-menu-list" aria-label="submenu">
                             <li>
                                 <a href="#">
                                     <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" stroke-width="2"

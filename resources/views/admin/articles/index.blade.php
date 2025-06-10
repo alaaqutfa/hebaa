@@ -48,7 +48,7 @@
                                 <tr>
                                     <!-- العنوان -->
                                     <td class="px-4 py-2 font-medium text-gray-800 dark:text-gray-200">
-                                        {{ $article->title }}
+                                        {{ translation($article->title) }}
                                     </td>
 
                                     <!-- التاريخ -->
@@ -61,7 +61,7 @@
                                         @foreach ($article->categories as $category)
                                             <span
                                                 class="inline-block px-2 py-1 mx-2 text-xs font-semibold text-white bg-blue-600 rounded">
-                                                {{ $category->name }}
+                                                {{ translation($category->name) }}
                                             </span>
                                         @endforeach
                                     </td>

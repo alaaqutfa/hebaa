@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\LanguagesController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TransactionsController;
+use App\Http\Controllers\Admin\TranslationController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['web', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['web', 'admin', 'lang'])->prefix('admin')->name('admin.')->group(function () {
 
     //* Dashboard *//
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -35,9 +37,18 @@ Route::middleware(['web', 'admin'])->prefix('admin')->name('admin.')->group(func
     Route::get('/team', [TeamController::class, 'index'])->name('team');
     // * Team End *//
 
-    // * Team *//
+    // * Setting *//
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
     Route::post('/setting/hero', [SettingController::class, 'editHero'])->name('editHero');
-    // * Team End *//
+    // * Setting End *//
 
+    // * Languages *//
+    Route::resource('languages', LanguagesController::class);
+    // * Languages End *//
+
+    // * Translation *//
+    Route::get('/translations/{locale}', [TranslationController::class, 'edit'])->name('translations.edit');
+    Route::post('/translations/{locale}/{key}', [TranslationController::class, 'update'])->name('translations.update');
+    Route::delete('/translations/{id}', [TranslationController::class, 'destroy'])->name('translations.destroy');
+    // * Translation End *//
 });

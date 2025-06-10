@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" dir="rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="dark" dir="{{ session('lang_direction', 'rtl') }}" lang="{{ session('lang_code', 'en') }}">
 
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/tailwind.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/auth/app.css') }}" />
     @stack('links')
+
+    <style>
+        * {
+            font-family: {!! session('lang_direction') == 'rtl' ? "'Tajawal'" : "'Merriweather'" !!};
+        }
+    </style>
 
 
     <!-- Vendor Scripts -->

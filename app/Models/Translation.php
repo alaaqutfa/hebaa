@@ -12,4 +12,9 @@ class Translation extends Model
     {
         return $this->morphTo();
     }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class, 'locale', 'code');
+    }
 }

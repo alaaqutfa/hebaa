@@ -19,7 +19,7 @@
             <!-- العنوان -->
             <label>
                 <span>{{ translation('Title') }}</span>
-                <input type="text" name="title" value="{{ old('title', $article->title) }}"
+                <input type="text" name="title" value="{{ old('title', translation($article->title)) }}"
                     placeholder="{{ translation('Enter your project title') }}" required>
                 @error('title')
                     <span validate-msg invalid>{{ $message }}</span>
@@ -40,7 +40,7 @@
             <!-- المحتوى -->
             <label class="mt-4">
                 <span>{{ translation('Content') }}</span>
-                <textarea name="content" id="editor" style="min-height: 200px;" required>{{ old('content', $article->content) }}</textarea>
+                <textarea name="content" id="editor" style="min-height: 200px;" required>{!! old('content', contentTranslation('content_'.$article->id,$article->content)) !!}</textarea>
                 @error('content')
                     <span validate-msg invalid>{{ $message }}</span>
                 @enderror

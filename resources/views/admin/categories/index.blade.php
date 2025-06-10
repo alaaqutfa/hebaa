@@ -126,7 +126,7 @@
     </div>
     @foreach ($categories as $category)
         <!-- Edit Category Modal -->
-        <div id="edit-category-modal-{{ $category->id }}" class="modal hidden">
+        <div id="edit-category-modal-{{ $category->id }}" class="modal">
             <!-- Modal -->
             <div class="modal-content" role="dialog">
                 <!-- Header -->
@@ -160,5 +160,4 @@
             </div>
         </div>
     @endforeach
-
 @endsection

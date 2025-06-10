@@ -154,8 +154,8 @@ export default {
     extend: {
       fontFamily: {
         arabic: ['Tajawal', 'sans-serif'],
-        english: ['Roboto', 'sans-serif'],
-        sans: ['Tajawal', 'Roboto', 'Inter', ...defaultTheme.fontFamily.sans],
+        english: ['Merriweather', 'sans-serif'],
+        sans: ['Tajawal', 'Merriweather', 'Inter', ...defaultTheme.fontFamily.sans],
       },
       maxHeight: {
         '0': '0',

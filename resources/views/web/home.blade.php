@@ -29,9 +29,9 @@
                             class="img-fluid" />
                     @endif
                     <div class="blog-content">
-                        <div class="post-meta flex-column">
+                        <div class="post-meta @if (count($hero_project_1->categories) > 3) flex-col @endif">
                             <span class="date">{{ $hero_project_1->date }}</span>
-                            @if (count($hero_project_1->categories) > 1)
+                            @if (count($hero_project_1->categories) > 3)
                                 <div class="init-swiper categories-slider" data-name="categories-swiper-config">
                                     <div class="swiper-wrapper">
                                         @foreach ($hero_project_1->categories as $category)
@@ -43,9 +43,11 @@
                                     </div>
                                 </div>
                             @else
-                                <a href="{{ route('category.show', $hero_project_1->categories[0]->slug) }}"
-                                    class="category">{{ translation($hero_project_1->categories[0]->name) }}
-                                </a>
+                                @foreach ($hero_project_1->categories as $category)
+                                    <a href="{{ route('category.show', $category->slug) }}"
+                                        class="category">{{ translation($category->name) }}
+                                    </a>
+                                @endforeach
                             @endif
                         </div>
                         <h2 class="post-title line-clamp">
@@ -67,9 +69,9 @@
                             class="img-fluid" />
                     @endif
                     <div class="blog-content">
-                        <div class="post-meta">
+                        <div class="post-meta @if (count($hero_project_2->categories) > 3) flex-col @endif">
                             <span class="date">{{ $hero_project_2->date }}</span>
-                            @if (count($hero_project_2->categories) > 1)
+                            @if (count($hero_project_2->categories) > 3)
                                 <div class="init-swiper categories-slider" data-name="categories-swiper-config">
                                     <div class="swiper-wrapper">
                                         @foreach ($hero_project_2->categories as $category)
@@ -81,9 +83,11 @@
                                     </div>
                                 </div>
                             @else
-                                <a href="{{ route('category.show', $hero_project_2->categories[0]->slug) }}"
-                                    class="category">{{ translation($hero_project_2->categories[0]->name) }}
-                                </a>
+                                @foreach ($hero_project_2->categories as $category)
+                                    <a href="{{ route('category.show', $category->slug) }}"
+                                        class="category">{{ translation($category->name) }}
+                                    </a>
+                                @endforeach
                             @endif
                         </div>
                         <h3 class="post-title line-clamp">
@@ -106,9 +110,9 @@
                             class="img-fluid" />
                     @endif
                     <div class="blog-content">
-                        <div class="post-meta">
+                        <div class="post-meta @if (count($hero_project_3->categories) > 3) flex-col @endif">
                             <span class="date">{{ $hero_project_3->date }}</span>
-                            @if (count($hero_project_3->categories) > 1)
+                            @if (count($hero_project_3->categories) > 3)
                                 <div class="init-swiper categories-slider" data-name="categories-swiper-config">
                                     <div class="swiper-wrapper">
                                         @foreach ($hero_project_3->categories as $category)
@@ -120,9 +124,11 @@
                                     </div>
                                 </div>
                             @else
-                                <a href="{{ route('category.show', $hero_project_3->categories[0]->slug) }}"
-                                    class="category">{{ translation($hero_project_3->categories[0]->name) }}
-                                </a>
+                                @foreach ($hero_project_3->categories as $category)
+                                    <a href="{{ route('category.show', $category->slug) }}"
+                                        class="category">{{ translation($category->name) }}
+                                    </a>
+                                @endforeach
                             @endif
                         </div>
                         <h3 class="post-title line-clamp">
@@ -145,9 +151,9 @@
                             class="img-fluid" />
                     @endif
                     <div class="blog-content">
-                        <div class="post-meta">
+                        <div class="post-meta @if (count($hero_project_4->categories) > 3) flex-col @endif">
                             <span class="date">{{ $hero_project_4->date }}</span>
-                            @if (count($hero_project_4->categories) > 1)
+                            @if (count($hero_project_4->categories) > 3)
                                 <div class="init-swiper categories-slider" data-name="categories-swiper-config">
                                     <div class="swiper-wrapper">
                                         @foreach ($hero_project_4->categories as $category)
@@ -159,9 +165,11 @@
                                     </div>
                                 </div>
                             @else
-                                <a href="{{ route('category.show', $hero_project_4->categories[0]->slug) }}"
-                                    class="category">{{ translation($hero_project_4->categories[0]->name) }}
-                                </a>
+                                @foreach ($hero_project_4->categories as $category)
+                                    <a href="{{ route('category.show', $category->slug) }}"
+                                        class="category">{{ translation($category->name) }}
+                                    </a>
+                                @endforeach
                             @endif
                         </div>
                         <h3 class="post-title line-clamp">
@@ -184,9 +192,9 @@
                             class="img-fluid" />
                     @endif
                     <div class="blog-content">
-                        <div class="post-meta">
+                        <div class="post-meta @if (count($hero_project_5->categories) > 3) flex-col @endif">
                             <span class="date">{{ $hero_project_5->date }}</span>
-                            @if (count($hero_project_5->categories) > 1)
+                            @if (count($hero_project_5->categories) > 3)
                                 <div class="init-swiper categories-slider" data-name="categories-swiper-config">
                                     <div class="swiper-wrapper max-w-full">
                                         @foreach ($hero_project_5->categories as $category)
@@ -198,9 +206,11 @@
                                     </div>
                                 </div>
                             @else
-                                <a href="{{ route('category.show', $hero_project_5->categories[0]->slug) }}"
-                                    class="category">{{ translation($hero_project_5->categories[0]->name) }}
-                                </a>
+                                @foreach ($hero_project_5->categories as $category)
+                                    <a href="{{ route('category.show', $category->slug) }}"
+                                        class="category">{{ translation($category->name) }}
+                                    </a>
+                                @endforeach
                             @endif
                         </div>
                         <h3 class="post-title line-clamp">
@@ -247,15 +257,15 @@
                                     onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project" />
                                 <div class="blog-post-content">
                                     <div class="post-meta">
-                                        {{-- <span class="flex justify-center items-center gap-2 mb-2">
+                                        <span class="flex justify-start items-center gap-2 mb-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
                                                 fill="currentColor" viewBox="0 0 512 512">
                                                 <path
                                                     d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" />
                                             </svg>
-                                            abdulrahman
-                                        </span> --}}
-                                        <span class="flex justify-center items-center gap-2">
+                                            {{ $project->user->name }}
+                                        </span>
+                                        <span class="flex justify-start items-center gap-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="21"
                                                 fill="currentColor" viewBox="0 0 448 512">
                                                 <path
@@ -269,16 +279,18 @@
                                             {{ translation($project->title) }}
                                         </a>
                                     </h2>
-                                    <p>
+                                    {{-- <p>
                                         {!! contentTranslation($project->id, $project->content) !!}
-                                    </p>
+                                    </p> --}}
                                     <a href="{{ route('project.show', $project->slug) }}" class="read-more">
                                         {{ translation('Read More') }}
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="15"
-                                            fill="currentColor" viewBox="0 0 320 512">
-                                            <path
-                                                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                                        </svg>
+                                        <i>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="15"
+                                                fill="currentColor" viewBox="0 0 320 512">
+                                                <path
+                                                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                                            </svg>
+                                        </i>
                                     </a>
                                 </div>
                             </div>
@@ -291,6 +303,70 @@
         </div>
 
     </section><!-- /Featured Posts Section -->
+
+    {{-- <!-- Category Section Section -->
+    <section id="category-section" class="category-section section">
+
+        <!-- Section Title -->
+        <div class="container mx-auto section-title" data-aos="fade-up">
+            <h2>{{ translation('Category Section') }}</h2>
+            <div> <span class="description-title">{{ translation('Category Section') }}</span></div>
+        </div><!-- End Section Title -->
+
+        <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <!-- Featured Posts -->
+            <div class="row gy-4 mb-4">
+                <div class="col-lg-4">
+                    <article class="featured-post">
+                        <div class="post-img">
+                            <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="" class="img-fluid"
+                                loading="lazy">
+                        </div>
+                        <div class="post-content">
+                            <div class="category-meta">
+                                <span class="post-category">Health</span>
+                                <div class="author-meta">
+                                    <img src="assets/img/person/person-f-13.webp" alt="" class="author-img">
+                                    <span class="author-name">William G.</span>
+                                    <span class="post-date">28 April 2024</span>
+                                </div>
+                            </div>
+                            <h2 class="title">
+                                <a href="blog-details.html">Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem</a>
+                            </h2>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- List Posts -->
+            <div class="row">
+                <div class="col-xl-4 col-lg-6">
+                    <article class="list-post">
+                        <div class="post-img">
+                            <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="" class="img-fluid"
+                                loading="lazy">
+                        </div>
+                        <div class="post-content">
+                            <div class="category-meta">
+                                <span class="post-category">Gaming</span>
+                            </div>
+                            <h3 class="title">
+                                <a href="blog-details.html">Quis autem vel eum iure reprehenderit qui in ea
+                                    voluptate</a>
+                            </h3>
+                            <div class="post-meta">
+                                <span class="read-time">2 mins read</span>
+                                <span class="post-date">6 April 2026</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+    </section><!-- /Category Section Section --> --}}
 @endsection
 
 @push('scripts')
@@ -300,14 +376,20 @@
           "loop": true,
           "speed": 800,
           "autoplay": {
-            "delay": 2000
+              "delay": 2000
           },
           "spaceBetween": 10,
           "freeMode": true,
           "breakpoints": {
-            "640": { "slidesPerView": 2 },
-            "768": { "slidesPerView": 3 },
-            "1024": { "slidesPerView": 5 }
+              "640": {
+              "slidesPerView": 2
+              },
+              "768": {
+              "slidesPerView": 3
+              },
+              "1024": {
+              "slidesPerView": 5
+              }
           }
         }
     </script>

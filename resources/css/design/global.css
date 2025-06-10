@@ -194,4 +194,36 @@ span.validate-msg.invalid {
   @apply flex justify-center items-center border-2 border-dashed bg-transparent w-full mt-1 text-sm dark:border-gray-600 dark:hover:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input;
 }
 
+.iconed-input {
+  @apply relative w-full min-w-[20rem] text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400;
+}
+
+.iconed-input input {
+  @apply block w-full pr-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input;
+}
+
+.iconed-input .icon {
+  @apply cursor-pointer absolute inset-y-0 rtl:left-0 ltr:right-0 flex items-center ltr:mr-3 rtl:ml-3 focus:border-none focus:ring-0 focus:outline-none;
+}
+
+.iconed-input .icon svg path {
+  @apply fill-gray-800 dark:fill-gray-500;
+}
+
+.iconed-input .icon-content {
+  @apply cursor-pointer absolute top-2 right-2 flex items-center ltr:mr-3 rtl:ml-3 focus:border-none focus:ring-0 focus:outline-none;
+}
+
+.iconed-input .icon-content svg path {
+  @apply fill-gray-800;
+}
+
+.iconed-input.show .icon svg path {
+  @apply fill-purple-600 dark:fill-purple-400;
+}
+
+.languages > select {
+  @apply dark:bg-gray-800;
+}
+
 /** Global Style End **/

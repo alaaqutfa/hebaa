@@ -5,6 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    // ✅ تحميل العلاقات تلقائياً
+    protected $with = ['user', 'categories', 'images'];
+
     // ✅ التحويل التلقائي للحقول الزمنية إلى Carbon
     protected $casts = [
         'published_at' => 'datetime',

@@ -45,6 +45,17 @@
                       </a>
                   </div>
 
+                  <div class="languages">
+                      <select onchange="location.href=this.value">
+                          @foreach (getLanguage() as $lang)
+                              <option value="{{ route('languages.switch', $lang->code) }}"
+                                  @if (app()->getLocale() === $lang->code) selected @endif>
+                                  {{ $lang->name }}
+                              </option>
+                          @endforeach
+                      </select>
+                  </div>
+
                   <form class="search-form ms-4">
                       <label>
                           <input type="text" placeholder="{{ translation('Search...') }}" class="form-control">
@@ -68,7 +79,9 @@
                   <ul>
                       <li><a href="{{ route('home') }}">{{ translation('Home') }}</a></li>
                       @foreach (getCategory() as $category)
-                          <li><a href="{{ route('category.show', $category->slug) }}">{{ translation($category->name) }}</a></li>
+                          <li><a
+                                  href="{{ route('category.show', $category->slug) }}">{{ translation($category->name) }}</a>
+                          </li>
                       @endforeach
                   </ul>
                   <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
