@@ -48,6 +48,10 @@
   z-index: 40 !important;
 }
 
+.col-span-1 {
+  grid-column: span 1 / span 1 !important;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2 !important;
 }
@@ -1336,6 +1340,11 @@
   transition-timing-function: linear;
 }
 
+.container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 #toast-container {
   position: fixed;
   top: 1.25rem;
@@ -1390,6 +1399,10 @@
   .admin-content #main:where([dir="rtl"], [dir="rtl"] *) {
     padding-right: 16rem;
   }
+}
+
+#web-main {
+  padding-top: 150px;
 }
 
 .title h1 {
@@ -3527,6 +3540,10 @@ aside.mobile:is(.dark *) {
   z-index: 10 !important;
 }
 
+.focus\:border-none:focus {
+  border-style: none !important;
+}
+
 .focus\:border-blue-300:focus {
   --tw-border-opacity: 1 !important;
   border-color: rgb(164 202 254 / var(--tw-border-opacity, 1)) !important;
@@ -3546,6 +3563,23 @@ aside.mobile:is(.dark *) {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color) !important;
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color) !important;
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important;
+}
+
+.focus\:ring-0:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color) !important;
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important;
+}
+
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color) !important;
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important;
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1 !important;
+  --tw-ring-color: rgb(63 131 248 / var(--tw-ring-opacity, 1)) !important;
 }
 
 .focus\:shadow-outline-gray:focus {

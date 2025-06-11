@@ -6,7 +6,7 @@
                   <img src="{{ asset('assets/img/logo.png') }}" alt="شعار حباء" />
               </a>
 
-              <div class="mobile-side">
+              <div class="mobile-side flex gap-2">
                   <!-- Mobile hamburger -->
                   <button type="button" class="hamburger" aria-label="Menu" onclick="mobileNavToogle()">
                       <svg class="list-icon w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">

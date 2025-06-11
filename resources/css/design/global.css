@@ -56,6 +56,10 @@
   @apply duration-150 ease-linear;
 }
 
+.container {
+  @apply px-6;
+}
+
 #toast-container {
   @apply fixed top-5 rtl:left-5 ltr:right-5 z-50 space-y-2;
 }
