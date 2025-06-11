@@ -48,7 +48,7 @@
         @include('web.layouts.partials.sidebar')
 
         <!-- Main -->
-        <div id="main">
+        <div id="web-main">
             @yield('content')
         </div>
 

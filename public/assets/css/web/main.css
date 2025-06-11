@@ -270,12 +270,6 @@ h6 {
   color: var(--accent-color);
 }
 
-@media (max-width: 1024px) {
-  .header .social-links {
-    padding-right: 40px;
-  }
-}
-
 .header .search-form {
   position: relative;
   width: 250px;
@@ -329,8 +323,6 @@ h6 {
 
 .header .nav-wrap {
   background-color: color-mix(in srgb, var(--default-color), transparent 96%);
-  margin-top: 10px;
-  display: none;
   justify-content: center;
 }
 
@@ -356,11 +348,13 @@ h6 {
   }
 
   .navmenu ul {
+    width: 100%;
     margin: 0;
     padding: 0;
     display: flex;
     gap: 1rem;
     list-style: none;
+    justify-content: center;
     align-items: center;
   }
 
@@ -368,8 +362,8 @@ h6 {
     position: relative;
   }
 
-  .navmenu a,
-  .navmenu a:focus {
+  .navmenu li:not(.auth) a,
+  .navmenu li:not(.auth) a:focus {
     color: var(--nav-color);
     padding: 18px 15px;
     font-size: 16px;
@@ -382,8 +376,8 @@ h6 {
     transition: 0.3s;
   }
 
-  .navmenu a i,
-  .navmenu a:focus i {
+  .navmenu li:not(.auth) a i,
+  .navmenu li:not(.auth) a:focus i {
     font-size: 12px;
     line-height: 0;
     margin-left: 5px;
@@ -394,7 +388,7 @@ h6 {
     padding-right: 0;
   }
 
-  .navmenu li:hover > a,
+  .navmenu li:not(.auth):hover > a,
   .navmenu .active,
   .navmenu .active:focus {
     color: var(--nav-hover-color);
@@ -458,7 +452,7 @@ h6 {
 }
 
 /* Navmenu - Mobile */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .mobile-nav-toggle {
     background-color: color-mix(in srgb, var(--default-color) 10%, white 15%);
     color: var(--nav-color);
@@ -482,10 +476,8 @@ h6 {
   }
 
   .navmenu ul {
-    display: none;
     list-style: none;
-    position: absolute;
-    inset: 60px 20px 20px 20px;
+    /* inset: 60px 20px 20px 20px; */
     padding: 10px 0;
     margin: 0;
     border-radius: 6px;
@@ -586,10 +578,6 @@ h6 {
     background: rgba(33, 37, 41, 0.8);
     transition: 0.3s;
   }
-
-  .mobile-nav-active .navmenu > ul {
-    display: block;
-  }
 }
 
 /*--------------------------------------------------------------
@@ -614,7 +602,8 @@ h6 {
 }
 
 .footer .footer-about .logo img {
-  max-height: 40px;
+  min-width: 75px;
+  max-height: 75px;
   margin-right: 6px;
 }
 

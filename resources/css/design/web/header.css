@@ -4,8 +4,18 @@ header.web {
   @apply lg:pt-4 fixed top-0 left-0 bg-white dark:bg-gray-600 z-20 w-full h-[100px] lg:h-[150px] shadow flex justify-center items-center flex-row lg:flex-col;
 }
 
-header.web .hamburger {
-  @apply md:hidden;
+header.web .mobile-side {
+  @apply lg:hidden;
+}
+
+header.web .hamburger svg.list-icon,
+header.web .hamburger.show svg.x-icon {
+  @apply block;
+}
+
+header.web .hamburger.show svg.list-icon,
+header.web .hamburger svg.x-icon {
+  @apply hidden;
 }
 
 header.web .container {
@@ -21,7 +31,7 @@ header.web .container .top-row .logo {
 }
 
 .web-nav {
-  @apply fixed top-[100px] md:static hidden md:flex items-center flex-col md:flex-row gap-2;
+  @apply fixed top-[100px] md:static hidden lg:flex items-center flex-col md:flex-row gap-4;
 }
 
 .web-nav > div {
@@ -36,8 +46,45 @@ header.web .container .top-row .logo {
   @apply min-w-[8rem] text-center p-2 border border-solid border-[#008d36] rounded-lg text-[#008d36] hover:text-white hover:bg-[#008d36];
 }
 
-.nav-wrap {
-  @apply hidden lg:flex;
+.header .nav-wrap {
+  @apply hidden lg:flex w-full fixed lg:static top-[100px];
+}
+
+.header .nav-wrap.show {
+  @apply flex;
+}
+
+.navmenu {
+  @apply w-full;
+}
+
+.navmenu > ul > li.social,
+.navmenu > ul > li.auth {
+  @apply lg:hidden;
+}
+
+.header-profile {
+  @apply relative;
+}
+
+.header-profile > button {
+  @apply align-middle rounded-full focus:shadow-outline-purple focus:outline-none;
+}
+
+.header-profile > button > img {
+  @apply object-cover w-8 h-8 rounded-full;
+}
+
+.header-profile > ul.header-profile-list {
+  @apply absolute rtl:left-0 ltr:right-0 w-56 z-30 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700;
+}
+
+.header-profile > ul.header-profile-list > li {
+  @apply flex;
+}
+
+.header-profile > ul.header-profile-list > li > a {
+  @apply inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200;
 }
 
 /** Header End **/

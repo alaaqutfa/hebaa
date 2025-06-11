@@ -25,12 +25,12 @@
   /**
    * Mobile nav toggle
    */
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  const mobileNavToggleBtn = document.querySelector('.hamburger');
+  const navWrap = document.querySelector('.nav-wrap');
 
   function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+    navWrap.classList.toggle('show');
+    mobileNavToggleBtn.classList.toggle('show');
   }
   if (mobileNavToggleBtn) {
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
