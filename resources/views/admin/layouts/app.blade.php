@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>@yield('title')</title>
+    <title>@yield('title') | {{ translation(getSetting('site_title')) }}</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/fonts/merriweather.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fonts/tajawal.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/css/intlTelInput.min.css') }}" /> --}}
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/tailwind.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/aos/aos.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" />
@@ -26,6 +27,7 @@
     </style>
 
     <!-- Scripts -->
+    {{-- <script src="{{ asset('assets/vendor/js/intlTelInput.min.js') }}"></script> --}}
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>

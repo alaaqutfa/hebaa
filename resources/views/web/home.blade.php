@@ -1,9 +1,9 @@
 @php
-    $hero_project_1 = $heroProjects['hero_project_1'];
-    $hero_project_2 = $heroProjects['hero_project_2'];
-    $hero_project_3 = $heroProjects['hero_project_3'];
-    $hero_project_4 = $heroProjects['hero_project_4'];
-    $hero_project_5 = $heroProjects['hero_project_5'];
+    $hero_project_1 = $heroProjects['hero_project_1'] ?? null;
+    $hero_project_2 = $heroProjects['hero_project_2'] ?? null;
+    $hero_project_3 = $heroProjects['hero_project_3'] ?? null;
+    $hero_project_4 = $heroProjects['hero_project_4'] ?? null;
+    $hero_project_5 = $heroProjects['hero_project_5'] ?? null;
 @endphp
 
 @extends('web.layouts.app')
@@ -11,224 +11,229 @@
 @section('title', translation('Home'))
 
 @section('content')
-    <!-- Blog Hero Section -->
-    <section id="blog-hero" class="blog-hero section bg-transparent">
+    @if (isset($hero_project_1) &&
+            isset($hero_project_2) &&
+            isset($hero_project_3) &&
+            isset($hero_project_4) &&
+            isset($hero_project_5))
+        <!-- Blog Hero Section -->
+        <section id="blog-hero" class="blog-hero section bg-transparent">
 
-        <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
 
-            <div class="blog-grid">
-                <!-- Featured Post (Large) -->
-                <article class="blog-item featured" data-aos="fade-up">
-                    @if ($hero_project_1->image)
-                        <img src="{{ asset('storage/' . $hero_project_1->image) }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @else
-                        <img src="{{ asset('assets/img/placeholder.jpg') }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @endif
-                    <div class="blog-content">
-                        <div class="post-meta @if (count($hero_project_1->categories) > 3) flex-col @endif">
-                            <span class="date">{{ $hero_project_1->date }}</span>
-                            @if (count($hero_project_1->categories) > 3)
-                                <div class="init-swiper categories-slider" data-name="categories-swiper-config">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($hero_project_1->categories as $category)
-                                            <div class="swiper-slide">
-                                                <a href="{{ route('category.show', $category->slug) }}"
-                                                    class="category">{{ translation($category->name) }}</a>
-                                            </div>
-                                        @endforeach
+                <div class="blog-grid">
+                    <!-- Featured Post (Large) -->
+                    <article class="blog-item featured" data-aos="fade-up">
+                        @if ($hero_project_1->image)
+                            <img src="{{ asset('storage/' . $hero_project_1->image) }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @else
+                            <img src="{{ asset('assets/img/placeholder.jpg') }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @endif
+                        <div class="blog-content">
+                            <div class="post-meta @if (count($hero_project_1->categories) > 3) flex-col @endif">
+                                <span class="date">{{ $hero_project_1->date }}</span>
+                                @if (count($hero_project_1->categories) > 3)
+                                    <div class="init-swiper categories-slider" data-name="categories-swiper-config">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($hero_project_1->categories as $category)
+                                                <div class="swiper-slide">
+                                                    <a href="{{ route('category.show', $category->slug) }}"
+                                                        class="category">{{ translation($category->name) }}</a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            @else
-                                @foreach ($hero_project_1->categories as $category)
-                                    <a href="{{ route('category.show', $category->slug) }}"
-                                        class="category">{{ translation($category->name) }}
-                                    </a>
-                                @endforeach
-                            @endif
+                                @else
+                                    @foreach ($hero_project_1->categories as $category)
+                                        <a href="{{ route('category.show', $category->slug) }}"
+                                            class="category">{{ translation($category->name) }}
+                                        </a>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <h2 class="post-title line-clamp">
+                                <a href="{{ route('project.show', $hero_project_1->slug) }}"
+                                    title="{{ $hero_project_1->title ?? translation('Project Name') }}">{{ $hero_project_1->title ?? translation('Project Name') }}</a>
+                            </h2>
                         </div>
-                        <h2 class="post-title line-clamp">
-                            <a href="{{ route('project.show', $hero_project_1->slug) }}"
-                                title="{{ $hero_project_1->title ?? translation('Project Name') }}">{{ $hero_project_1->title ?? translation('Project Name') }}</a>
-                        </h2>
-                    </div>
-                </article><!-- End Featured Post -->
+                    </article><!-- End Featured Post -->
 
-                <!-- Regular Posts -->
-                <article class="blog-item" data-aos="fade-up" data-aos-delay="100">
-                    @if ($hero_project_2->image)
-                        <img src="{{ asset('storage/' . $hero_project_2->image) }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @else
-                        <img src="{{ asset('assets/img/placeholder.jpg') }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @endif
-                    <div class="blog-content">
-                        <div class="post-meta @if (count($hero_project_2->categories) > 3) flex-col @endif">
-                            <span class="date">{{ $hero_project_2->date }}</span>
-                            @if (count($hero_project_2->categories) > 3)
-                                <div class="init-swiper categories-slider" data-name="categories-swiper-config">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($hero_project_2->categories as $category)
-                                            <div class="swiper-slide">
-                                                <a href="{{ route('category.show', $category->slug) }}"
-                                                    class="category">{{ translation($category->name) }}</a>
-                                            </div>
-                                        @endforeach
+                    <!-- Regular Posts -->
+                    <article class="blog-item" data-aos="fade-up" data-aos-delay="100">
+                        @if ($hero_project_2->image)
+                            <img src="{{ asset('storage/' . $hero_project_2->image) }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @else
+                            <img src="{{ asset('assets/img/placeholder.jpg') }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @endif
+                        <div class="blog-content">
+                            <div class="post-meta @if (count($hero_project_2->categories) > 3) flex-col @endif">
+                                <span class="date">{{ $hero_project_2->date }}</span>
+                                @if (count($hero_project_2->categories) > 3)
+                                    <div class="init-swiper categories-slider" data-name="categories-swiper-config">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($hero_project_2->categories as $category)
+                                                <div class="swiper-slide">
+                                                    <a href="{{ route('category.show', $category->slug) }}"
+                                                        class="category">{{ translation($category->name) }}</a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            @else
-                                @foreach ($hero_project_2->categories as $category)
-                                    <a href="{{ route('category.show', $category->slug) }}"
-                                        class="category">{{ translation($category->name) }}
-                                    </a>
-                                @endforeach
-                            @endif
+                                @else
+                                    @foreach ($hero_project_2->categories as $category)
+                                        <a href="{{ route('category.show', $category->slug) }}"
+                                            class="category">{{ translation($category->name) }}
+                                        </a>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <h3 class="post-title line-clamp">
+                                <a href="{{ route('project.show', $hero_project_2->slug) }}"
+                                    title="{{ $hero_project_2->title ?? translation('Project Name') }}">
+                                    {{ $hero_project_2->title ?? translation('Project Name') }}
+                                </a>
+                            </h3>
                         </div>
-                        <h3 class="post-title line-clamp">
-                            <a href="{{ route('project.show', $hero_project_2->slug) }}"
-                                title="{{ $hero_project_2->title ?? translation('Project Name') }}">
-                                {{ $hero_project_2->title ?? translation('Project Name') }}
-                            </a>
-                        </h3>
-                    </div>
-                </article><!-- End Blog Item -->
+                    </article><!-- End Blog Item -->
 
-                <article class="blog-item" data-aos="fade-up" data-aos-delay="200">
-                    @if ($hero_project_3->image)
-                        <img src="{{ asset('storage/' . $hero_project_3->image) }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @else
-                        <img src="{{ asset('assets/img/placeholder.jpg') }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @endif
-                    <div class="blog-content">
-                        <div class="post-meta @if (count($hero_project_3->categories) > 3) flex-col @endif">
-                            <span class="date">{{ $hero_project_3->date }}</span>
-                            @if (count($hero_project_3->categories) > 3)
-                                <div class="init-swiper categories-slider" data-name="categories-swiper-config">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($hero_project_3->categories as $category)
-                                            <div class="swiper-slide">
-                                                <a href="{{ route('category.show', $category->slug) }}"
-                                                    class="category">{{ translation($category->name) }}</a>
-                                            </div>
-                                        @endforeach
+                    <article class="blog-item" data-aos="fade-up" data-aos-delay="200">
+                        @if ($hero_project_3->image)
+                            <img src="{{ asset('storage/' . $hero_project_3->image) }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @else
+                            <img src="{{ asset('assets/img/placeholder.jpg') }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @endif
+                        <div class="blog-content">
+                            <div class="post-meta @if (count($hero_project_3->categories) > 3) flex-col @endif">
+                                <span class="date">{{ $hero_project_3->date }}</span>
+                                @if (count($hero_project_3->categories) > 3)
+                                    <div class="init-swiper categories-slider" data-name="categories-swiper-config">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($hero_project_3->categories as $category)
+                                                <div class="swiper-slide">
+                                                    <a href="{{ route('category.show', $category->slug) }}"
+                                                        class="category">{{ translation($category->name) }}</a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            @else
-                                @foreach ($hero_project_3->categories as $category)
-                                    <a href="{{ route('category.show', $category->slug) }}"
-                                        class="category">{{ translation($category->name) }}
-                                    </a>
-                                @endforeach
-                            @endif
+                                @else
+                                    @foreach ($hero_project_3->categories as $category)
+                                        <a href="{{ route('category.show', $category->slug) }}"
+                                            class="category">{{ translation($category->name) }}
+                                        </a>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <h3 class="post-title line-clamp">
+                                <a href="{{ route('project.show', $hero_project_3->slug) }}"
+                                    title="{{ $hero_project_3->title ?? translation('Project Name') }}">
+                                    {{ $hero_project_3->title ?? translation('Project Name') }}
+                                </a>
+                            </h3>
                         </div>
-                        <h3 class="post-title line-clamp">
-                            <a href="{{ route('project.show', $hero_project_3->slug) }}"
-                                title="{{ $hero_project_3->title ?? translation('Project Name') }}">
-                                {{ $hero_project_3->title ?? translation('Project Name') }}
-                            </a>
-                        </h3>
-                    </div>
-                </article><!-- End Blog Item -->
+                    </article><!-- End Blog Item -->
 
-                <article class="blog-item" data-aos="fade-up" data-aos-delay="300">
-                    @if ($hero_project_4->image)
-                        <img src="{{ asset('storage/' . $hero_project_4->image) }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @else
-                        <img src="{{ asset('assets/img/placeholder.jpg') }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @endif
-                    <div class="blog-content">
-                        <div class="post-meta @if (count($hero_project_4->categories) > 3) flex-col @endif">
-                            <span class="date">{{ $hero_project_4->date }}</span>
-                            @if (count($hero_project_4->categories) > 3)
-                                <div class="init-swiper categories-slider" data-name="categories-swiper-config">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($hero_project_4->categories as $category)
-                                            <div class="swiper-slide">
-                                                <a href="{{ route('category.show', $category->slug) }}"
-                                                    class="category">{{ translation($category->name) }}</a>
-                                            </div>
-                                        @endforeach
+                    <article class="blog-item" data-aos="fade-up" data-aos-delay="300">
+                        @if ($hero_project_4->image)
+                            <img src="{{ asset('storage/' . $hero_project_4->image) }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @else
+                            <img src="{{ asset('assets/img/placeholder.jpg') }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @endif
+                        <div class="blog-content">
+                            <div class="post-meta @if (count($hero_project_4->categories) > 3) flex-col @endif">
+                                <span class="date">{{ $hero_project_4->date }}</span>
+                                @if (count($hero_project_4->categories) > 3)
+                                    <div class="init-swiper categories-slider" data-name="categories-swiper-config">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($hero_project_4->categories as $category)
+                                                <div class="swiper-slide">
+                                                    <a href="{{ route('category.show', $category->slug) }}"
+                                                        class="category">{{ translation($category->name) }}</a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            @else
-                                @foreach ($hero_project_4->categories as $category)
-                                    <a href="{{ route('category.show', $category->slug) }}"
-                                        class="category">{{ translation($category->name) }}
-                                    </a>
-                                @endforeach
-                            @endif
+                                @else
+                                    @foreach ($hero_project_4->categories as $category)
+                                        <a href="{{ route('category.show', $category->slug) }}"
+                                            class="category">{{ translation($category->name) }}
+                                        </a>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <h3 class="post-title line-clamp">
+                                <a href="{{ route('project.show', $hero_project_4->slug) }}"
+                                    title="{{ $hero_project_4->title ?? translation('Project Name') }}">
+                                    {{ $hero_project_4->title ?? translation('Project Name') }}
+                                </a>
+                            </h3>
                         </div>
-                        <h3 class="post-title line-clamp">
-                            <a href="{{ route('project.show', $hero_project_4->slug) }}"
-                                title="{{ $hero_project_4->title ?? translation('Project Name') }}">
-                                {{ $hero_project_4->title ?? translation('Project Name') }}
-                            </a>
-                        </h3>
-                    </div>
-                </article><!-- End Blog Item -->
+                    </article><!-- End Blog Item -->
 
-                <article class="blog-item" data-aos="fade-up" data-aos-delay="400">
-                    @if ($hero_project_5->image)
-                        <img src="{{ asset('storage/' . $hero_project_5->image) }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @else
-                        <img src="{{ asset('assets/img/placeholder.jpg') }}"
-                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
-                            class="img-fluid" />
-                    @endif
-                    <div class="blog-content">
-                        <div class="post-meta @if (count($hero_project_5->categories) > 3) flex-col @endif">
-                            <span class="date">{{ $hero_project_5->date }}</span>
-                            @if (count($hero_project_5->categories) > 3)
-                                <div class="init-swiper categories-slider" data-name="categories-swiper-config">
-                                    <div class="swiper-wrapper max-w-full">
-                                        @foreach ($hero_project_5->categories as $category)
-                                            <div class="swiper-slide">
-                                                <a href="{{ route('category.show', $category->slug) }}"
-                                                    class="category">{{ translation($category->name) }}</a>
-                                            </div>
-                                        @endforeach
+                    <article class="blog-item" data-aos="fade-up" data-aos-delay="400">
+                        @if ($hero_project_5->image)
+                            <img src="{{ asset('storage/' . $hero_project_5->image) }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @else
+                            <img src="{{ asset('assets/img/placeholder.jpg') }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project"
+                                class="img-fluid" />
+                        @endif
+                        <div class="blog-content">
+                            <div class="post-meta @if (count($hero_project_5->categories) > 3) flex-col @endif">
+                                <span class="date">{{ $hero_project_5->date }}</span>
+                                @if (count($hero_project_5->categories) > 3)
+                                    <div class="init-swiper categories-slider" data-name="categories-swiper-config">
+                                        <div class="swiper-wrapper max-w-full">
+                                            @foreach ($hero_project_5->categories as $category)
+                                                <div class="swiper-slide">
+                                                    <a href="{{ route('category.show', $category->slug) }}"
+                                                        class="category">{{ translation($category->name) }}</a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            @else
-                                @foreach ($hero_project_5->categories as $category)
-                                    <a href="{{ route('category.show', $category->slug) }}"
-                                        class="category">{{ translation($category->name) }}
-                                    </a>
-                                @endforeach
-                            @endif
+                                @else
+                                    @foreach ($hero_project_5->categories as $category)
+                                        <a href="{{ route('category.show', $category->slug) }}"
+                                            class="category">{{ translation($category->name) }}
+                                        </a>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <h3 class="post-title line-clamp">
+                                <a href="{{ route('project.show', $hero_project_5->slug) }}"
+                                    title="{{ $hero_project_5->title ?? translation('Project Name') }}">
+                                    {{ $hero_project_5->title ?? translation('Project Name') }}
+                                </a>
+                            </h3>
                         </div>
-                        <h3 class="post-title line-clamp">
-                            <a href="{{ route('project.show', $hero_project_5->slug) }}"
-                                title="{{ $hero_project_5->title ?? translation('Project Name') }}">
-                                {{ $hero_project_5->title ?? translation('Project Name') }}
-                            </a>
-                        </h3>
-                    </div>
-                </article><!-- End Blog Item -->
+                    </article><!-- End Blog Item -->
+
+                </div>
 
             </div>
 
-        </div>
-
-    </section>
-    <!-- /Blog Hero Section -->
-
+        </section>
+        <!-- /Blog Hero Section -->
+    @endif
     <!-- Featured Posts Section -->
     <section id="featured-posts" class="featured-posts section">
 

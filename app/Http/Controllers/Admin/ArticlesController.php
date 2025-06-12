@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
@@ -12,7 +11,7 @@ class ArticlesController
 {
     public function index()
     {
-        $articles = Article::with(['categories', 'images'])->latest()->get();
+        $articles = Article::with(['categories', 'images'])->latest()->paginate(10);
         return view('admin.articles.index', compact('articles'));
     }
 
@@ -132,5 +131,23 @@ class ArticlesController
         $article->delete();
 
         return redirect()->route('admin.articles.index')->with('message', 'تم حذف المشروع بنجاح.');
+    }
+
+    public function toggleFeatured(Article $article)
+    {
+        $article->update([
+            'featured' => ! $article->featured,
+        ]);
+
+        return back()->with('success', 'The discrimination status has been updated.');
+    }
+
+    public function togglePublished(Article $article)
+    {
+        $article->update([
+            'is_published' => ! $article->is_published,
+        ]);
+
+        return back()->with('success', 'The publication status has been updated.');
     }
 }

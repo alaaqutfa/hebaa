@@ -26,7 +26,7 @@
 
         </div>
 
-        <div class="table-wrapper">
+        <div class="table-wrapper mb-6">
             <div class="table-container overflow-x-auto">
                 <table>
                     <thead>
@@ -86,22 +86,28 @@
 
                                     <!-- حالة التمييز -->
                                     <td class="px-4 py-2">
-                                        @if ($article->featured)
-                                            <span
-                                                class="text-green-600 font-semibold">{{ translation('Featured') }}</span>
-                                        @else
-                                            <span class="text-red-600 font-semibold">{{ translation('Not Featured') }}</span>
-                                        @endif
+                                        <form action="{{ route('admin.articles.toggle-featured', $article->slug) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="active-btn {{ $article->featured ? 'active' : '' }}">
+                                                {{ $article->featured ? translation('Featured') : translation('Not Featured') }}
+                                            </button>
+                                        </form>
                                     </td>
 
                                     <!-- حالة النشر -->
                                     <td class="px-4 py-2">
-                                        @if ($article->is_published)
-                                            <span
-                                                class="text-green-600 font-semibold">{{ translation('Published') }}</span>
-                                        @else
-                                            <span class="text-red-600 font-semibold">{{ translation('Draft') }}</span>
-                                        @endif
+                                        <form action="{{ route('admin.articles.toggle-published', $article->slug) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="active-btn {{ $article->is_published ? 'active' : '' }}">
+                                                {{ $article->is_published ? translation('Published') : translation('Draft') }}
+                                            </button>
+                                        </form>
                                     </td>
 
                                     <!-- تاريخ النشر -->
@@ -137,9 +143,14 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td colspan="9">
+                                    {{ $articles->links() }}
+                                </td>
+                            </tr>
                         @else
                             <tr>
-                                <td colspan="7">
+                                <td colspan="9">
                                     {{ translation('No data found.') }}
                                 </td>
                             </tr>

@@ -71,4 +71,13 @@ class LanguagesController
 
         return redirect()->route('admin.setting')->with('success', 'The language has been deleted.');
     }
+
+    public function toggleActive(Language $language)
+    {
+        $language->update([
+            'is_active' => ! $language->is_active,
+        ]);
+
+        return back()->with('success', 'The language status has been updated successfully.');
+    }
 }

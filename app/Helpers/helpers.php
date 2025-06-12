@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\App;
 if (! function_exists('getLanguage')) {
     function getLanguage()
     {
+        return Language::active()->get();
+    }
+}
+
+if (! function_exists('getAdminLanguage')) {
+    function getAdminLanguage()
+    {
         return Language::all();
     }
 }
@@ -33,14 +40,46 @@ if (! function_exists('getCategory')) {
 if (! function_exists('getArticle')) {
     function getArticle()
     {
-        return Article::all();
+        return Article::published()->get();
+    }
+}
+
+if (! function_exists('getRecentArticlesForSelectedCategories')) {
+    function getRecentArticlesForSelectedCategories($categories, $excludeId = null, $limitPerCategory = 2)
+    {
+        $result              = [];
+        $collectedArticleIds = [];
+
+        foreach ($categories as $category) {
+            $articles = $category->articles()
+                ->with(['images', 'categories'])
+                ->latest()
+                ->get()
+                ->filter(function ($article) use (&$collectedArticleIds, $excludeId) {
+                    return $article->id !== $excludeId && ! in_array($article->id, $collectedArticleIds);
+                })
+                ->take($limitPerCategory);
+
+            foreach ($articles as $article) {
+                $collectedArticleIds[] = $article->id;
+            }
+
+            if ($articles->isNotEmpty()) {
+                $result[$category->id] = [
+                    'category' => $category,
+                    'articles' => $articles,
+                ];
+            }
+        }
+
+        return $result;
     }
 }
 
 if (! function_exists('getFeaturedArticle')) {
     function getFeaturedArticle()
     {
-        return Article::where('featured', true)->latest()->get();
+        return Article::published()->where('featured', true)->inRandomOrder()->paginate(10);
     }
 }
 
@@ -69,7 +108,7 @@ if (! function_exists('translation')) {
 if (! function_exists('contentTranslation')) {
     function contentTranslation($key, $defaultValue, $locale = null)
     {
-        $locale  = $locale ?: App::getLocale();
+        $locale = $locale ?: App::getLocale();
 
         $translation = Translation::firstOrCreate(
             ['key' => 'content_' . $key, 'locale' => $locale],
@@ -116,7 +155,7 @@ if (! function_exists('getHeroProjects')) {
             $projectId = getSetting($key);
 
             if ($projectId) {
-                $project = Article::with(['images', 'categories'])->find($projectId);
+                $project = Article::published()->with(['images', 'categories'])->find($projectId);
                 if ($project) {
                     $projects->put($key, $project);
                 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Language extends Model
 {
+
     protected $fillable = ['name', 'code', 'direction', 'is_active'];
 
     public function isRtl(): bool
@@ -21,5 +22,10 @@ class Language extends Model
     public function translations(): HasMany
     {
         return $this->hasMany(Translation::class, 'locale', 'code');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
     }
 }

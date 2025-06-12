@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LanguagesController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TransactionsController;
@@ -23,6 +24,8 @@ Route::middleware(['web', 'admin', 'lang'])->prefix('admin')->name('admin.')->gr
 
     //* Articles *//
     Route::resource('articles', ArticlesController::class);
+    Route::patch('/articles/{article}/toggle-featured', [ArticlesController::class, 'toggleFeatured'])->name('articles.toggle-featured');
+    Route::patch('/articles/{article}/toggle-published', [ArticlesController::class, 'togglePublished'])->name('articles.toggle-published');
     //* Articles End *//
 
     // * Categories *//
@@ -35,7 +38,14 @@ Route::middleware(['web', 'admin', 'lang'])->prefix('admin')->name('admin.')->gr
 
     // * Team *//
     Route::get('/team', [TeamController::class, 'index'])->name('team');
+    Route::post('/team/register', [TeamController::class, 'register'])->name('team.register');
+    Route::put('/team/{id}', [TeamController::class, 'update'])->name('team.update');
+    Route::delete('/team/{id}', [TeamController::class, 'destroy'])->name('team.destroy');
     // * Team End *//
+
+    //* Profile *//
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    //* Profile End *//
 
     // * Setting *//
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
@@ -44,6 +54,7 @@ Route::middleware(['web', 'admin', 'lang'])->prefix('admin')->name('admin.')->gr
 
     // * Languages *//
     Route::resource('languages', LanguagesController::class);
+    Route::patch('/languages/{language}/toggle-active', [LanguagesController::class, 'toggleActive'])->name('languages.toggle-active');
     // * Languages End *//
 
     // * Translation *//

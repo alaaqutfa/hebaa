@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @stack('meta')
 
-    <title>@yield('title')</title>
+    <title>@yield('title') | {{ translation(getSetting('site_title')) }}</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/fonts/merriweather.css') }}" />

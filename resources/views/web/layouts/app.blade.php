@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>@yield('title')</title>
+    <title>@yield('title') | {{ translation(getSetting('site_title')) }}</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/fonts/merriweather.css') }}" />

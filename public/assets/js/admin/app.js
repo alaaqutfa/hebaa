@@ -14,6 +14,7 @@ const app = createApp({
     };
   },
   mounted() {
+    // this.initPhoneFields();
     this.dark = this.getThemeFromLocalStorage();
 
     watchEffect(() => {
@@ -136,6 +137,19 @@ const app = createApp({
       modal.classList.remove('show');
       if (this.trapCleanup) {
         this.trapCleanup();
+      }
+    },
+    initPhoneFields() {
+      const inputs = document.querySelectorAll(".phoneField");
+      if (inputs) {
+        inputs.forEach(input => {
+          window.intlTelInput(input, {
+            initialCountry: "iq", // سوريا مثلاً
+            nationalMode: false,
+            separateDialCode: true,
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+          });
+        });
       }
     }
   }

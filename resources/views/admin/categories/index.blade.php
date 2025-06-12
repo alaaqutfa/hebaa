@@ -76,6 +76,11 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td colspan="2">
+                                    {{ $categories->links() }}
+                                </td>
+                            </tr>
                         @else
                             <tr>
                                 <td colspan="2">
@@ -146,7 +151,7 @@
 
                     <label>
                         <span>{{ translation('Category name') }}</span>
-                        <input name="name" value="{{ $category->name }}"
+                        <input name="name" value="{{ translation($category->name) }}"
                             placeholder="{{ translation('Enter category name') }}" required />
                         @error('name')
                             <span class="validate-msg invalid">{{ translation($message) }}</span>

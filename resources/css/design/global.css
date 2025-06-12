@@ -105,7 +105,7 @@
 }
 
 .modal .modal-content {
-  @apply w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl;
+  @apply w-full max-h-[90vh] overflow-auto px-6 py-4 bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl;
 }
 
 .modal .modal-content > header {
@@ -230,8 +230,28 @@ span.validate-msg.invalid {
   @apply fill-purple-600 dark:fill-purple-400;
 }
 
-.languages > select {
+.admin-content .languages > select {
   @apply dark:bg-gray-800;
+}
+
+.active-btn {
+  @apply px-2 py-1 text-nowrap rounded text-[#222222] hover:text-[#f8f8f8] bg-gray-400 hover:bg-gray-600;
+}
+
+.active-btn.active {
+  @apply text-white bg-green-400 hover:bg-green-600;
+}
+
+label.phone-label {
+  @apply mt-4 flex justify-start items-start flex-col;
+}
+
+label.phone-label > .iti {
+  @apply w-full mt-1;
+}
+
+.iti--separate-dial-code .iti__selected-dial-code {
+  @apply text-gray-700 dark:text-gray-400;
 }
 
 /** Global Style End **/

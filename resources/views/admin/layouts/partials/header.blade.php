@@ -90,31 +90,22 @@
             <li class="profile-menu">
                 <button @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                     aria-haspopup="true">
-                    <img src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                        alt="hebaa-user-profile" aria-hidden="true" />
+                    @php($admin = auth()->user())
+                    <img src="{{ asset('storage/' . $admin->avatar) }}"
+                        onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="hebaa-user-profile"
+                        aria-hidden="true" />
                 </button>
                 <template v-if="isProfileMenuOpen">
                     <transition name="fade">
                         <ul v-if="isProfileMenuOpen" @click.self="closeProfileMenu" @keydown.esc="closeProfileMenu"
                             class="profile-menu-list" aria-label="submenu">
                             <li>
-                                <a href="#">
+                                <a href="{{ route('admin.profile') }}">
                                     <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" stroke-width="2"
                                         viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
                                     <span>{{ translation('Profile') }}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" stroke-width="2"
-                                        viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                        <path
-                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                    <span>{{ translation('Settings') }}</span>
                                 </a>
                             </li>
                             <li>

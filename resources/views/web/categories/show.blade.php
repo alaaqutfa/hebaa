@@ -54,6 +54,9 @@
                             @endforeach
 
                         </div>
+                        <div class="w-full mt-6">
+                            {{ $projects->links() }}
+                        </div>
                     </div>
 
                 </section><!-- /Category Postst Section -->

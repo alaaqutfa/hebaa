@@ -8,6 +8,7 @@ class ArticlesController
     public function show(Article $article)
     {
         $project = $article->load(['categories', 'images']);
-        return view('web.articles.show', compact('project'));
+        $recent  = getRecentArticlesForSelectedCategories($project->categories,$project->id);
+        return view('web.articles.show', compact('project', 'recent'));
     }
 }
