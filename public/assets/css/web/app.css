@@ -2459,7 +2459,14 @@ header.web:is(.dark *) {
     flex-direction: column;
     padding-top: 1rem;
   }
+}
 
+header.web .mobile-side {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (min-width: 1024px) {
   header.web .mobile-side {
     display: none;
   }

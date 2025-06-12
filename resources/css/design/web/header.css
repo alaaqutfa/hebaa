@@ -5,7 +5,7 @@ header.web {
 }
 
 header.web .mobile-side {
-  @apply lg:hidden;
+  @apply flex lg:hidden  gap-2;
 }
 
 header.web .hamburger svg.list-icon,
