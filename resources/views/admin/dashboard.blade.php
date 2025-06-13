@@ -7,7 +7,7 @@
     <div class="container">
         <div class="title">
             <h1>
-                Dashboard
+                {{ translation('Dashboard') }}
             </h1>
         </div>
 
@@ -24,10 +24,10 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Total clients
+                        {{ translation('Total clients') }}
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        6389
+                        {{ count($users) }}
                     </p>
                 </div>
             </div>
@@ -42,10 +42,10 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Account balance
+                        {{ translation('Donations balance') }}
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        $ 46,760.89
+                        {{ format_currency($totalAmount) }}
                     </p>
                 </div>
             </div>
@@ -60,10 +60,10 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        New sales
+                        {{ translation('Donations') }}
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        376
+                        {{ count($donations) }}
                     </p>
                 </div>
             </div>
@@ -78,10 +78,10 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Pending contacts
+                        {{ translation('Messages') }}
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        35
+                        {{ $messagesCount }}
                     </p>
                 </div>
             </div>
@@ -93,163 +93,128 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Client</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Date</th>
+                            <th>{{ translation('Client') }}</th>
+                            <th>{{ translation('Email') }}</th>
+                            <th>{{ translation('Phone') }}</th>
+                            <th>{{ translation('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-gray-700 dark:text-gray-400">
-                            <td>
-                                <div class="flex items-center text-sm">
-                                    <!-- Avatar with inset shadow -->
-                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                        <img class="object-cover w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                            alt="" loading="lazy" />
-                                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Hans Burger</p>
-                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                            10x Developer
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                $ 863.45
-                            </td>
-                            <td>
-                                <span
-                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    Approved
-                                </span>
-                            </td>
-                            <td>
-                                6/10/2020
-                            </td>
-                        </tr>
+                        @if (count($users) > 0)
+                            @foreach ($users as $user)
+                                <tr class="text-gray-700 dark:text-gray-400">
+                                    <td>
+                                        <div class="flex justify-center items-center text-sm gap-2">
+                                            <!-- Avatar with inset shadow -->
+                                            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                <img class="object-cover w-full h-full rounded-full"
+                                                    src="{{ asset('storage/' . $user->image) }}" alt=""
+                                                    onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'"
+                                                    loading="lazy" />
+                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">{{ $user->name }} {{ $user->last_name }}</p>
+                                                {{-- <p class="text-xs text-gray-600 dark:text-gray-400">
+                                                    10x Developer
+                                                </p> --}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {{ $user->email }}
+                                    </td>
+                                    <td>
+                                        {{ $user->phone }}
+                                    </td>
+                                    <td>
+                                        6/10/2020
+                                    </td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="4">{{ $users->links() }}</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <td colspan="4"></td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
-            </div>
-            <div
-                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-                <span class="flex items-center col-span-3">
-                    Showing 21-30 of 100
-                </span>
-                <span class="col-span-2"></span>
-                <!-- Pagination -->
-                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                    <nav aria-label="Table navigation">
-                        <ul class="inline-flex items-center">
-                            <li>
-                                <button
-                                    class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                                    aria-label="Previous">
-                                    <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                        <path
-                                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                    1
-                                </button>
-                            </li>
-                            <li>
-                                <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                    2
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                    3
-                                </button>
-                            </li>
-                            <li>
-                                <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                    4
-                                </button>
-                            </li>
-                            <li>
-                                <span class="px-3 py-1">...</span>
-                            </li>
-                            <li>
-                                <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                    8
-                                </button>
-                            </li>
-                            <li>
-                                <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                    9
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                                    aria-label="Next">
-                                    <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                                        <path
-                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
-                </span>
             </div>
         </div>
 
         <!-- Charts -->
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Charts
+            {{ translation('Donation Statistics') }}
         </h2>
+
         <div class="grid gap-6 mb-8 md:grid-cols-2">
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Revenue
+                    {{ translation('Campaigns Status') }}
                 </h4>
-                <canvas id="pie"></canvas>
-                <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                    <!-- Chart legend -->
-                    <div class="flex items-center">
-                        <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-                        <span>Shirts</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                        <span>Shoes</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
-                        <span>Bags</span>
-                    </div>
-                </div>
+                <canvas id="campaignStatusChart" height="250"></canvas>
             </div>
+
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Traffic
+                    {{ translation('Donations This Month') }}
                 </h4>
-                <canvas id="line"></canvas>
-                <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                    <!-- Chart legend -->
-                    <div class="flex items-center">
-                        <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                        <span>Organic</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
-                        <span>Paid</span>
-                    </div>
-                </div>
+                <canvas id="donationChart" height="250"></canvas>
             </div>
         </div>
     </div>
 
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // رسم بياني دائري للحملات
+            const campaignStatusChart = new Chart(document.getElementById('campaignStatusChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['{{ translation('Active') }}', '{{ translation('Inactive') }}',
+                        '{{ translation('Completed') }}'
+                    ],
+                    datasets: [{
+                        label: '{{ translation('Campaigns Status') }}',
+                        data: [
+                            {{ $campaignsStats['active'] }},
+                            {{ $campaignsStats['inactive'] }},
+                            {{ $campaignsStats['completed'] }}
+                        ],
+                        backgroundColor: ['#4299e1', '#f6ad55', '#48bb78'],
+                    }]
+                }
+            });
+
+            // رسم بياني خطي للتبرعات اليومية
+            const donationChart = new Chart(document.getElementById('donationChart'), {
+                type: 'line',
+                data: {
+                    labels: {!! json_encode($donationChartLabels) !!},
+                    datasets: [{
+                        label: '{{ translation('Daily Donations') }}',
+                        data: {!! json_encode($donationChartData) !!},
+                        borderColor: '#48bb78',
+                        backgroundColor: 'rgba(72, 187, 120, 0.2)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

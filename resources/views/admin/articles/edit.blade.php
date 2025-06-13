@@ -12,7 +12,7 @@
             <h1>{{ translation('Edit Project') }}</h1>
         </div>
 
-        <form action="{{ route('admin.articles.update', $article->slug) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.articles.update', $article->slug) }}" class="overflow-x-auto" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

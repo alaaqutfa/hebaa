@@ -13,7 +13,7 @@
             <h1>{{ translation('Add New Project') }}</h1>
         </div>
 
-        <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.articles.store') }}" class="overflow-x-auto" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- العنوان -->
@@ -39,7 +39,9 @@
             <!-- المحتوى -->
             <label class="mt-4">
                 <span>{{ translation('Content') }}</span>
-                <textarea name="content" id="editor" style="min-height: 200px;">{{ old('content') }}</textarea>
+                <div class="editor-wrapper">
+                    <textarea name="content" id="editor" style="min-height: 200px;">{{ old('content') }}</textarea>
+                </div>
                 @error('content')
                     <span validate-msg invalid>{{ $message }}</span>
                 @enderror

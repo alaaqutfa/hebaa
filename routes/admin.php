@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DonationCampaignController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LanguagesController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -31,6 +32,12 @@ Route::middleware(['web', 'admin', 'lang'])->prefix('admin')->name('admin.')->gr
     // * Categories *//
     Route::resource('categories', CategoryController::class);
     // * Categories End *//
+
+    // * Donation Campaigns *//
+    Route::resource('donation-campaigns', DonationCampaignController::class)->except(['show', 'create', 'edit']);
+    Route::patch('/donation-campaigns/{donationCampaign}/toggle-active', [DonationCampaignController::class, 'toggleActive'])->name('donation-campaigns.toggle-active');
+    Route::get('/donation-campaigns/messages', [DonationCampaignController::class, 'msgs'])->name('donation-campaigns.msgs');
+    // * Donation Campaigns End *//
 
     // * Transactions *//
     Route::get('/transactions', [TransactionsController::class, 'index'])->name('transactions');

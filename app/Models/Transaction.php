@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transaction extends Model
 {
+    protected $with     = ['donation'];
     protected $fillable = [
         'donation_id',
         'reference_id',
@@ -15,7 +15,7 @@ class Transaction extends Model
     ];
 
     protected $casts = [
-        'paid_at' => 'datetime',
+        'paid_at'    => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

@@ -1,11 +1,43 @@
 <?php
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Currency;
+use App\Models\Donation;
+use App\Models\DonationCampaign;
 use App\Models\Language;
 use App\Models\Setting;
 use App\Models\Translation;
+use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\App;
+
+if (! function_exists("getDonationPaidAmount")) {
+    function getDonationPaidAmount(DonationCampaign $campaign)
+    {
+        return Donation::where('campaign_id', $campaign->id)
+            ->where('status', 'paid')
+            ->sum('amount') ?? 0;
+    }
+}
+
+if (! function_exists('is_campaign_expired')) {
+    function is_campaign_expired(DonationCampaign $campaign): bool
+    {
+        $now = now();
+        return $campaign->end_date && $campaign->end_date < $now;
+    }
+}
+
+if (! function_exists('is_campaign_collected')) {
+    function is_campaign_collected(DonationCampaign $campaign): bool
+    {
+        $collected = Donation::where('campaign_id', $campaign->id)
+            ->where('status', 'paid')
+            ->sum('amount');
+
+        return $collected >= $campaign->target_amount;
+    }
+}
 
 if (! function_exists('getLanguage')) {
     function getLanguage()
@@ -164,4 +196,44 @@ if (! function_exists('getHeroProjects')) {
 
         return $projects;
     }
+}
+
+if (! function_exists('getCurrency')) {
+    function getCurrency()
+    {
+        return Currency::active()->get();
+    }
+}
+
+if (! function_exists('convert_currency')) {
+    function convert_currency($amount)
+    {
+        return Currency::convert($amount);
+    }
+}
+
+if (! function_exists('format_currency')) {
+    function format_currency($amount)
+    {
+        return Currency::format($amount);
+    }
+}
+
+function getWeeklyMessagesCount(): int
+{
+    return Donation::whereNotNull('message')
+        ->whereBetween('created_at', [
+            Carbon::now()->startOfWeek(),
+            Carbon::now()->endOfWeek(),
+        ])
+        ->count();
+}
+
+function getWeeklyDonationTotal(): float
+{
+    return Donation::whereBetween('created_at', [
+        Carbon::now()->startOfWeek(),
+        Carbon::now()->endOfWeek(),
+    ])
+        ->count();
 }

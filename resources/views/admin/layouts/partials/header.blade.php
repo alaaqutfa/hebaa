@@ -67,18 +67,18 @@
                         <ul v-if="isNotificationsMenuOpen" @click.self="closeNotificationsMenu"
                             @keydown.esc="closeNotificationsMenu" class="notifications-menu-list">
                             <li>
-                                <a class="" href="#">
-                                    <span>Messages</span>
+                                <a class="" href="{{ route('admin.donation-campaigns.msgs') }}">
+                                    <span>{{ translation('Messages') }}</span>
                                     <span>
-                                        13
+                                        {{ getWeeklyMessagesCount() }}
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <span>Sales</span>
+                                <a href="{{ route('admin.donation-campaigns.index') }}">
+                                    <span>{{ translation('Donations') }}</span>
                                     <span class="">
-                                        2
+                                        {{ getWeeklyDonationTotal() }}
                                     </span>
                                 </a>
                             </li>

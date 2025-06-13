@@ -24,4 +24,12 @@
   @apply ltr:transform ltr:-scale-100;
 }
 
+.project-image-item {
+  @apply w-full h-32 rounded-lg overflow-hidden;
+}
+
+.project-image-item img {
+  @apply w-full h-32 object-contain bg-[#f0f0f0];
+}
+
 /** Projects End **/

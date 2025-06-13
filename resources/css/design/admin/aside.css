@@ -21,7 +21,7 @@ aside.mobile {
 }
 
 .aside-container > ul.aside-list {
-  @apply mt-6 flex justify-start items-start flex-col gap-6;
+  @apply mt-6 flex justify-start items-start flex-col gap-2;
 }
 
 .aside-container > ul.aside-list > li {

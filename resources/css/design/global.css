@@ -35,6 +35,20 @@
     width: 100% !important;
   }
 
+  .editor-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto;
+  }
+
+  .ck-editor__editable,
+  .ck-editor,
+  .ck-editor__main,
+  .ck-editor__editable_inline {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
   .ts-wrapper {
     padding: 0 !important;
   }
@@ -252,6 +266,10 @@ label.phone-label > .iti {
 
 .iti--separate-dial-code .iti__selected-dial-code {
   @apply text-gray-700 dark:text-gray-400;
+}
+
+.textNowrap {
+  @apply text-nowrap;
 }
 
 /** Global Style End **/

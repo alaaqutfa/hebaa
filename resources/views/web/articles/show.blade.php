@@ -17,7 +17,7 @@
                         <article class="article">
 
                             <div class="hero-img" data-aos="zoom-in">
-                                <img src="{{ asset('storage/' . $project->image) }}"
+                                <img src="{{ asset('storage/' . $project->image) }}" id="project-basic-image"
                                     onerror="this.src='{{ asset('assets/img/placeholder-rect.jpg') }}'"
                                     alt="Featured blog image" class="img-fluid" loading="lazy">
                                 <div class="meta-overlay">
@@ -43,6 +43,21 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @if (count($project->images) > 1)
+                                <div class="init-swiper project-images-slider my-6" data-name="project-images-swiper-config">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($project->images as $img)
+                                            <div class="swiper-slide">
+                                              <button type="button" class="project-image-item" @click="changeProjectImage('{{ asset('storage/' . $img->image) }}')">
+                                                <img src="{{ asset('storage/' . $img->image) }}" {{-- onerror="this.src='{{ asset('assets/img/placeholder-rect.jpg') }}'" --}}
+                                                    alt="Featured blog image" class="img-fluid" loading="lazy">
+                                              </button>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
 
                             <div class="article-content" data-aos="fade-up" data-aos-delay="100">
                                 <div class="content-header">
@@ -369,7 +384,8 @@
 
                             <div class="grid grid-cols-1 gap-4">
                                 <div class="flex flex-col">
-                                    <label for="name" class="mb-1 font-medium">{{ translation('Full Name') }} *</label>
+                                    <label for="name" class="mb-1 font-medium">{{ translation('Full Name') }}
+                                        *</label>
                                     <input type="text" name="name" id="name" required
                                         placeholder="{{ translation('Enter your full name') }}"
                                         class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -500,6 +516,29 @@
 @endsection
 
 @push('scripts')
+    <script type="application/json" class="project-images-swiper-config">
+        {
+          "slidesPerView": "auto",
+          "loop": true,
+          "speed": 800,
+          "autoplay": {
+              "delay": 2000
+          },
+          "spaceBetween": 10,
+          "freeMode": true,
+          "breakpoints": {
+              "640": {
+              "slidesPerView": 2
+              },
+              "768": {
+              "slidesPerView": 3
+              },
+              "1024": {
+              "slidesPerView": 5
+              }
+          }
+        }
+    </script>
     <script type="application/json" class="categories-swiper-config">
         {
           "slidesPerView": "auto",

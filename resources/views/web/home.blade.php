@@ -57,7 +57,7 @@
                             </div>
                             <h2 class="post-title line-clamp">
                                 <a href="{{ route('project.show', $hero_project_1->slug) }}"
-                                    title="{{ $hero_project_1->title ?? translation('Project Name') }}">{{ $hero_project_1->title ?? translation('Project Name') }}</a>
+                                    title="{{ translation($hero_project_1->title) ?? translation('Project Name') }}">{{ translation($hero_project_1->title) ?? translation('Project Name') }}</a>
                             </h2>
                         </div>
                     </article><!-- End Featured Post -->
@@ -97,8 +97,8 @@
                             </div>
                             <h3 class="post-title line-clamp">
                                 <a href="{{ route('project.show', $hero_project_2->slug) }}"
-                                    title="{{ $hero_project_2->title ?? translation('Project Name') }}">
-                                    {{ $hero_project_2->title ?? translation('Project Name') }}
+                                    title="{{ translation($hero_project_2->title) ?? translation('Project Name') }}">
+                                    {{ translation($hero_project_2->title) ?? translation('Project Name') }}
                                 </a>
                             </h3>
                         </div>
@@ -138,8 +138,8 @@
                             </div>
                             <h3 class="post-title line-clamp">
                                 <a href="{{ route('project.show', $hero_project_3->slug) }}"
-                                    title="{{ $hero_project_3->title ?? translation('Project Name') }}">
-                                    {{ $hero_project_3->title ?? translation('Project Name') }}
+                                    title="{{ translation($hero_project_3->title) ?? translation('Project Name') }}">
+                                    {{ translation($hero_project_3->title) ?? translation('Project Name') }}
                                 </a>
                             </h3>
                         </div>
@@ -179,8 +179,8 @@
                             </div>
                             <h3 class="post-title line-clamp">
                                 <a href="{{ route('project.show', $hero_project_4->slug) }}"
-                                    title="{{ $hero_project_4->title ?? translation('Project Name') }}">
-                                    {{ $hero_project_4->title ?? translation('Project Name') }}
+                                    title="{{ translation($hero_project_4->title) ?? translation('Project Name') }}">
+                                    {{ translation($hero_project_4->title) ?? translation('Project Name') }}
                                 </a>
                             </h3>
                         </div>
@@ -220,8 +220,8 @@
                             </div>
                             <h3 class="post-title line-clamp">
                                 <a href="{{ route('project.show', $hero_project_5->slug) }}"
-                                    title="{{ $hero_project_5->title ?? translation('Project Name') }}">
-                                    {{ $hero_project_5->title ?? translation('Project Name') }}
+                                    title="{{ translation($hero_project_5->title) ?? translation('Project Name') }}">
+                                    {{ translation($hero_project_5->title) ?? translation('Project Name') }}
                                 </a>
                             </h3>
                         </div>
@@ -309,69 +309,65 @@
 
     </section><!-- /Featured Posts Section -->
 
-    {{-- <!-- Category Section Section -->
-    <section id="category-section" class="category-section section">
+    @if (count($activeCampaigns) > 0)
+        <!-- Donation Campaigns Section -->
+        <section id="category-section" class="category-section section">
 
-        <!-- Section Title -->
-        <div class="container mx-auto section-title" data-aos="fade-up">
-            <h2>{{ translation('Category Section') }}</h2>
-            <div> <span class="description-title">{{ translation('Category Section') }}</span></div>
-        </div><!-- End Section Title -->
+            <!-- Section Title -->
+            <div class="container mx-auto section-title" data-aos="fade-up">
+                <h2>{{ translation('Donation Campaigns') }}</h2>
+                <div> <span
+                        class="description-title">{{ translation("You don't have to be rich to make a difference; your donation means a lot.") }}</span>
+                </div>
+            </div><!-- End Section Title -->
 
-        <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
-            <!-- Featured Posts -->
-            <div class="row gy-4 mb-4">
-                <div class="col-lg-4">
-                    <article class="featured-post">
-                        <div class="post-img">
-                            <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="" class="img-fluid"
-                                loading="lazy">
-                        </div>
-                        <div class="post-content">
-                            <div class="category-meta">
-                                <span class="post-category">Health</span>
-                                <div class="author-meta">
-                                    <img src="assets/img/person/person-f-13.webp" alt="" class="author-img">
-                                    <span class="author-name">William G.</span>
-                                    <span class="post-date">28 April 2024</span>
+            <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <!-- Featured Posts -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    @foreach ($activeCampaigns as $campaign)
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="{{ asset('storage/' . $campaign->image) }}"
+                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt=""
+                                class="w-full h-48 object-cover" loading="lazy">
+                            <div class="p-4">
+                                <div class="flex justify-between items-center text-sm text-gray-500 mb-2">
+                                    <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">
+                                        @isset($campaign->single_amount)
+                                            {{ format_currency($campaign->single_amount) }}
+                                        @else
+                                            {{ format_currency($campaign->target_amount) }}
+                                        @endisset
+                                    </span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-xs">{{ $campaign->start_date }}</span>
+                                        <svg fill="currentColor" class="w-5 h-5" style="transform: rotate(90deg);"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                            <path
+                                                d="M182.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L128 109.3l0 293.5L86.6 361.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 402.7l0-293.5 41.4 41.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-96-96z" />
+                                        </svg>
+                                        <span class="text-xs">{{ $campaign->end_date }}</span>
+                                    </div>
                                 </div>
+                                <h2 class="text-lg font-semibold text-gray-800 hover:text-primary">
+                                    <a href="blog-details.html">
+                                        {{ $campaign->title }}
+                                    </a>
+                                </h2>
+                                <p>
+                                    {!! $campaign->description !!}
+                                </p>
+                                <a href="#">{{ translation('Donation') }}</a>
                             </div>
-                            <h2 class="title">
-                                <a href="blog-details.html">Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem</a>
-                            </h2>
                         </div>
-                    </article>
+                    @endforeach
                 </div>
+
+                {{ $activeCampaigns->links() }}
+
             </div>
 
-            <!-- List Posts -->
-            <div class="row">
-                <div class="col-xl-4 col-lg-6">
-                    <article class="list-post">
-                        <div class="post-img">
-                            <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="" class="img-fluid"
-                                loading="lazy">
-                        </div>
-                        <div class="post-content">
-                            <div class="category-meta">
-                                <span class="post-category">Gaming</span>
-                            </div>
-                            <h3 class="title">
-                                <a href="blog-details.html">Quis autem vel eum iure reprehenderit qui in ea
-                                    voluptate</a>
-                            </h3>
-                            <div class="post-meta">
-                                <span class="read-time">2 mins read</span>
-                                <span class="post-date">6 April 2026</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-    </section><!-- /Category Section Section --> --}}
+        </section><!-- Donation Campaigns Section -->
+    @endif
 @endsection
 
 @push('scripts')

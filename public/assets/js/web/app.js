@@ -3,7 +3,7 @@ const { createApp, watchEffect, nextTick, ref } = Vue;
 const app = createApp({
   data() {
     return {
-      dark: false,
+      // dark: false,
       isSideMenuOpen: false,
       isNotificationsMenuOpen: false,
       isProfileMenuOpen: false,
@@ -14,13 +14,17 @@ const app = createApp({
     };
   },
   mounted() {
-    this.dark = this.getThemeFromLocalStorage();
+    // this.dark = this.getThemeFromLocalStorage();
 
-    watchEffect(() => {
-      document.documentElement.classList.toggle('dark', this.dark);
-    });
+    // watchEffect(() => {
+    //   document.documentElement.classList.toggle('dark', this.dark);
+    // });
   },
   methods: {
+
+    changeProjectImage(src) {
+      document.getElementById('project-basic-image').src = src;
+    },
 
     // ✅ رفع صورة أساسية مع التحقق
     handleBasicImage(event) {

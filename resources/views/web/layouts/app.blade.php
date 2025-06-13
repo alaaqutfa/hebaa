@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html :class="dark ? 'dark' : ''" dir="{{ session('lang_direction', 'rtl') }}" lang="{{ session('lang_code', 'en') }}">
+<html dir="{{ session('lang_direction', 'rtl') }}" lang="{{ session('lang_code', 'en') }}">
 
 <head>
     <meta charset="UTF-8">
