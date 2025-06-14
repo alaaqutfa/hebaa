@@ -6,11 +6,11 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationCampaignController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LanguagesController;
-use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\TranslationController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'admin', 'lang'])->prefix('admin')->name('admin.')->group(function () {

@@ -11,6 +11,7 @@
 @section('title', translation('Home'))
 
 @section('content')
+
     @if (isset($hero_project_1) &&
             isset($hero_project_2) &&
             isset($hero_project_3) &&
@@ -234,80 +235,84 @@
         </section>
         <!-- /Blog Hero Section -->
     @endif
-    <!-- Featured Posts Section -->
-    <section id="featured-posts" class="featured-posts section">
 
-        <!-- Section Title -->
-        <div class="container mx-auto section-title" data-aos="fade-up">
-            <h2>{{ translation('Featured Projects') }}</h2>
-            <div>
-                <span>
-                    {{ translation('Check Our') }}
-                </span>
-                <span class="description-title">
-                    {{ translation('Featured Projects') }}
-                </span>
-            </div>
-        </div><!-- End Section Title -->
+    @if (count($featured) > 0)
+        <!-- Featured Posts Section -->
+        <section id="featured-posts" class="featured-posts section">
 
-        <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <!-- Section Title -->
+            <div class="container mx-auto section-title" data-aos="fade-up">
+                <h2>{{ translation('Featured Projects') }}</h2>
+                <div>
+                    <span>
+                        {{ translation('Check Our') }}
+                    </span>
+                    <span class="description-title">
+                        {{ translation('Featured Projects') }}
+                    </span>
+                </div>
+            </div><!-- End Section Title -->
 
-            <div class="blog-posts-slider swiper init-swiper" data-name="featured-swiper-config">
+            <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
 
-                <div class="swiper-wrapper">
-                    @foreach ($featured as $project)
-                        <div class="swiper-slide">
-                            <div class="blog-post-item">
-                                <img src="{{ asset('storage/' . $project->image) }}"
-                                    onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hiwar Project" />
-                                <div class="blog-post-content">
-                                    <div class="post-meta">
-                                        <span class="flex justify-start items-center gap-2 mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
-                                                fill="currentColor" viewBox="0 0 512 512">
-                                                <path
-                                                    d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" />
-                                            </svg>
-                                            {{ $project->user->name }}
-                                        </span>
-                                        <span class="flex justify-start items-center gap-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="21"
-                                                fill="currentColor" viewBox="0 0 448 512">
-                                                <path
-                                                    d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z" />
-                                            </svg>
-                                            {{ $project->date }}
-                                        </span>
-                                    </div>
-                                    <h2>
-                                        <a href="{{ route('project.show', $project->slug) }}" class="line-clamp">
-                                            {{ translation($project->title) }}
-                                        </a>
-                                    </h2>
-                                    {{-- <p>
+                <div class="blog-posts-slider swiper init-swiper" data-name="featured-swiper-config">
+
+                    <div class="swiper-wrapper">
+                        @foreach ($featured as $project)
+                            <div class="swiper-slide">
+                                <div class="blog-post-item">
+                                    <img src="{{ asset('storage/' . $project->image) }}"
+                                        onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'"
+                                        alt="Hiwar Project" />
+                                    <div class="blog-post-content">
+                                        <div class="post-meta">
+                                            <span class="flex justify-start items-center gap-2 mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
+                                                    fill="currentColor" viewBox="0 0 512 512">
+                                                    <path
+                                                        d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" />
+                                                </svg>
+                                                {{ $project->user->name }}
+                                            </span>
+                                            <span class="flex justify-start items-center gap-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="21"
+                                                    fill="currentColor" viewBox="0 0 448 512">
+                                                    <path
+                                                        d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z" />
+                                                </svg>
+                                                {{ $project->date }}
+                                            </span>
+                                        </div>
+                                        <h2>
+                                            <a href="{{ route('project.show', $project->slug) }}" class="line-clamp">
+                                                {{ translation($project->title) }}
+                                            </a>
+                                        </h2>
+                                        {{-- <p>
                                         {!! contentTranslation($project->id, $project->content) !!}
                                     </p> --}}
-                                    <a href="{{ route('project.show', $project->slug) }}" class="read-more">
-                                        {{ translation('Read More') }}
-                                        <i>
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="15"
-                                                fill="currentColor" viewBox="0 0 320 512">
-                                                <path
-                                                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                                            </svg>
-                                        </i>
-                                    </a>
+                                        <a href="{{ route('project.show', $project->slug) }}" class="read-more">
+                                            {{ translation('Read More') }}
+                                            <i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="15"
+                                                    fill="currentColor" viewBox="0 0 320 512">
+                                                    <path
+                                                        d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                                                </svg>
+                                            </i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div><!-- End slide item -->
-                    @endforeach
+                            </div><!-- End slide item -->
+                        @endforeach
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
-
-    </section><!-- /Featured Posts Section -->
+        </section><!-- /Featured Posts Section -->
+    @endif
 
     @if (count($activeCampaigns) > 0)
         <!-- Donation Campaigns Section -->
@@ -368,6 +373,59 @@
 
         </section><!-- Donation Campaigns Section -->
     @endif
+
+    <!-- Latest Posts Section -->
+    <section id="latest-posts" class="latest-posts section">
+
+        <!-- Section Title -->
+        <div class="container mx-auto section-title" data-aos="fade-up">
+            <h2>{{ translation('Latest Projects') }}</h2>
+            <div><span>{{ translation('Check Our') }}</span> <span
+                    class="description-title">{{ translation('Latest Projects') }}</span></div>
+        </div><!-- End Section Title -->
+
+        <div class="container mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                @foreach ($latestProject as $project)
+                    <div class="project-item">
+                        <article>
+
+                            <div class="post-img">
+                                <img src="{{ asset('storage/' . $project->image) }}"
+                                    onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt=""
+                                    class="img-fluid" />
+                            </div>
+
+                            <p class="post-category">{{ translation($project->categories[0]->name) }}</p>
+
+                            <h2 class="title">
+                                <a href="{{ route('project.show', $project->slug) }}" class="line-clamp">
+                                    {{ translation($project->title) }}
+                                </a>
+                            </h2>
+
+                            <div class="flex items-center gap-2">
+                                <img src="{{ asset('storage/' . $project->user->avatar) }}" alt="avatar"
+                                    class="img-fluid post-author-img flex-shrink-0">
+                                <div class="post-meta">
+                                    <p class="post-author">{{ $project->user->name . ' ' . $project->user->last_name }}
+                                    </p>
+                                    <p class="post-date">
+                                        <time datetime="{{ $project->date }}">{{ $project->date }}</time>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </article>
+                    </div><!-- End post list item -->
+                @endforeach
+            </div>
+            <div class="w-full">
+                {{ $latestProject->links() }}
+            </div>
+        </div>
+
+    </section><!-- /Latest Posts Section -->
 @endsection
 
 @push('scripts')

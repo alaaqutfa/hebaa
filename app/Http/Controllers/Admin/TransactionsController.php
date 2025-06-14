@@ -9,7 +9,7 @@ class TransactionsController
 {
     public function index()
     {
-        $transactions = Transaction::latest()->paginate(10); // أو get() حسب الحاجة
+        $transactions = Transaction::latest()->paginate(10);
 
         return view('web.transactions.index', compact('transactions'));
     }

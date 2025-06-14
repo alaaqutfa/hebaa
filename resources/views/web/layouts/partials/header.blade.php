@@ -22,11 +22,13 @@
                   </button>
 
                   @if (Auth::check())
+                      @php($user = Auth::user())
                       <div class="header-profile">
                           <button @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                               aria-haspopup="true">
-                              <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="hebaa-user-profile"
-                                  aria-hidden="true" />
+                              <img src="{{ asset('storage/' . $user->avatar) }}"
+                                  onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'"
+                                  alt="hebaa-user-profile" aria-hidden="true" />
                           </button>
                           <template v-if="isProfileMenuOpen">
                               <transition name="fade">
@@ -138,9 +140,10 @@
                       </button>
                   </div>
 
-                  <form class="search-form ms-4">
+                  <form class="search-form ms-4" action="{{ route('search') }}" method="GET">
                       <label>
-                          <input type="text" placeholder="{{ translation('Search...') }}" class="form-control">
+                          <input type="text" name="q" placeholder="{{ translation('Search...') }}"
+                              class="form-control" value="{{ request('q') }}">
                           <button type="submit" class="btn">
                               <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
                                   fill="currentColor" viewBox="0 0 512 512">
@@ -161,11 +164,13 @@
 
                       </div>
                   @else
+                      @php($user = Auth::user())
                       <div class="header-profile">
                           <button @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                               aria-haspopup="true">
-                              <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="hebaa-user-profile"
-                                  aria-hidden="true" />
+                              <img src="{{ asset('storage/' . $user->avatar) }}"
+                                  onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'"
+                                  alt="hebaa-user-profile" aria-hidden="true" />
                           </button>
                           <template v-if="isProfileMenuOpen">
                               <transition name="fade">
@@ -186,7 +191,8 @@
                                           </li>
                                       @endif
                                       <li>
-                                          <a href="#">
+                                          <a
+                                              href="@if (Auth::user()->is_admin) {{ route('admin.profile') }} @else {{ route('profile') }} @endif">
                                               <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor"
                                                   stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
                                                   stroke-linejoin="round">
@@ -235,7 +241,14 @@
                           </li>
                       @endif
                       <li>
-                          <a href="{{ route('home') }}">{{ translation('Home') }}</a>
+                          <a href="{{ route('home') }}">
+                              {{ translation('Home') }}
+                          </a>
+                      </li>
+                      <li>
+                          <a href="{{ route('about') }}">
+                              {{ translation('About us') }}
+                          </a>
                       </li>
                       @foreach (getCategory() as $category)
                           <li>

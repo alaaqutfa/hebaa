@@ -3,14 +3,16 @@
     <div class="container mx-auto footer-top">
         <div class="flex">
             <div class="w-4/12 md:w-1/2 footer-about">
-                <a href="index.html" class="logo flex items-center">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="Hebaa-logo" />
+                <a href="{{ route('home') }}" class="logo flex items-center">
+                    <img src="{{ asset('assets/img/logo.png') }}"
+                        onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt="Hebaa-logo" />
                 </a>
                 <div class="footer-contact pt-3">
                     <p>{{ translation(getSetting('address_1')) }}</p>
                     <p>{{ translation(getSetting('address_2')) }}</p>
                     <p class="mt-3"><strong>{{ translation('Phone:') }}</strong>
-                        <span>{{ getSetting('phone') }}</span></p>
+                        <span>{{ getSetting('phone') }}</span>
+                    </p>
                     <p><strong>{{ translation('Email:') }}</strong> <span>{{ getSetting('email') }}</span></p>
                 </div>
                 <div class="social-links flex mt-4">

@@ -40,7 +40,7 @@
             <!-- المحتوى -->
             <label class="mt-4">
                 <span>{{ translation('Content') }}</span>
-                <textarea name="content" id="editor" style="min-height: 200px;" required>{!! old('content', contentTranslation('content_'.$article->id,$article->content)) !!}</textarea>
+                <textarea name="content" id="editor" style="min-height: 200px;" required>{!! old('content', contentTranslation($article->id,$article->content)) !!}</textarea>
                 @error('content')
                     <span validate-msg invalid>{{ $message }}</span>
                 @enderror
@@ -53,7 +53,7 @@
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}"
                             {{ in_array($category->id, old('categories', $article->categories->pluck('id')->toArray())) ? 'selected' : '' }}>
-                            {{ $category->name }}
+                            {{ translation($category->name) }}
                         </option>
                     @endforeach
                 </select>

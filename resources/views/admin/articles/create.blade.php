@@ -52,7 +52,7 @@
                 <span>{{ translation('Categories') }}</span>
                 <select id="categories-select" name="categories[]" multiple class="w-full border rounded px-3 py-2">
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ translation($category->name) }}</option>
                     @endforeach
                 </select>
                 @error('categories')
