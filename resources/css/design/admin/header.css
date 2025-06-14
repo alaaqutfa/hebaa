@@ -12,7 +12,7 @@ header.admin .container button.hamburger {
 }
 
 header.admin .container .search-input {
-  @apply flex justify-center lg:justify-end xl:justify-center flex-1 lg:rtl:mr-64 lg:ltr:ml-64;
+  @apply hidden lg:flex justify-center lg:justify-end xl:justify-center flex-1 lg:rtl:mr-64 lg:ltr:ml-64;
 }
 
 header.admin .container .search-input > div {
@@ -110,11 +110,22 @@ header.admin .container ul.header-list li.profile-menu > ul.profile-menu-list {
   @apply absolute rtl:left-0 ltr:right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700;
 }
 
-header.admin .container ul.header-list li.profile-menu > ul.profile-menu-list > li {
+header.admin
+  .container
+  ul.header-list
+  li.profile-menu
+  > ul.profile-menu-list
+  > li {
   @apply flex;
 }
 
-header.admin .container ul.header-list li.profile-menu > ul.profile-menu-list > li > a {
+header.admin
+  .container
+  ul.header-list
+  li.profile-menu
+  > ul.profile-menu-list
+  > li
+  > a {
   @apply inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200;
 }
 

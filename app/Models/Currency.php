@@ -31,10 +31,10 @@ class Currency extends Model
         $to       = session('currency', 'USD');
         $currency = self::where('code', $to)->first();
         if (! $currency) {
-            return $amount;
+            return self::convert($amount);
         }
 
-        return number_format($amount, 2) . ' ' . $currency->symbol;
+        return number_format(self::convert($amount), 2) . ' ' . $currency->symbol;
     }
 
     public function scopeActive($query)

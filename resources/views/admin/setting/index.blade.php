@@ -3,7 +3,7 @@
 @section('title', translation('Settings'))
 
 @section('content')
-    <div class="container">
+    <div class="container mb-6">
 
         <div class="title">
             <h1>{{ translation('Settings') }}</h1>
@@ -27,7 +27,7 @@
                         <tr>
                             <td>{{ translation('Site Title') }}</td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="site_title" />
                                     <label>
@@ -53,7 +53,7 @@
                         <tr>
                             <td>{{ translation('Address 1') }}</td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="address_1" />
                                     <label>
@@ -79,7 +79,7 @@
                         <tr>
                             <td>{{ translation('Address 2') }}</td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="address_2" />
                                     <label>
@@ -105,7 +105,7 @@
                         <tr>
                             <td>{{ translation('Site Email') }}</td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="email" />
                                     <label>
@@ -131,7 +131,7 @@
                         <tr>
                             <td>{{ translation('Site Phone') }}</td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="phone" />
                                     <label>
@@ -155,7 +155,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="text-start">{{ translation('Social Links') }}</td>
+                            <td colspan="2" class="text-center">{{ translation('Social Links') }}</td>
                         </tr>
                         <tr>
                             <td>
@@ -168,7 +168,7 @@
                                 </center>
                             </td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="facebook" />
                                     <label>
@@ -202,7 +202,7 @@
                                 </center>
                             </td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="twitter" />
                                     <label>
@@ -236,7 +236,7 @@
                                 </center>
                             </td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="instagram" />
                                     <label>
@@ -270,7 +270,7 @@
                                 </center>
                             </td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="youtube" />
                                     <label>
@@ -304,7 +304,7 @@
                                 </center>
                             </td>
                             <td class="actions">
-                                <form action="{{ route('admin.editHero') }}" method="POST">
+                                <form action="{{ route('admin.editSetting') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="key" value="tiktok" />
                                     <label>
@@ -381,7 +381,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('admin.languages.toggle-active', $lang->id) }}" method="POST">
+                                        <form action="{{ route('admin.languages.toggle-active', $lang->id) }}"
+                                            method="POST">
                                             @csrf
                                             @method('PATCH')
                                             <button type="submit"
@@ -444,6 +445,116 @@
         </div>
 
         <hr class="mt-6" />
+
+        <div class="top-bar">
+
+            <div class="title">
+                <h1>{{ translation('Currencies') }}</h1>
+            </div>
+
+            <div class="actions">
+
+                <button type="button" class="btn" @click="openModal('add-currency-modal')" tabindex="1">
+                    <span>{{ translation('Add New') }}</span>
+                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="10" width="8.75"
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+                    </svg>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="table-wrapper">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ translation('Code') }}</th>
+                            <th>{{ translation('Name') }}</th>
+                            <th>{{ translation('Symbol') }}</th>
+                            <th>{{ translation('Rate') }}</th>
+                            <th>{{ translation('Status') }}</th>
+                            <th>{{ translation('Actions') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (count(getCurrency()) > 0)
+                            @foreach (getCurrency() as $currency)
+                                <tr>
+                                    <td>{{ $currency->code }}</td>
+                                    <td>{{ translation($currency->name) }}</td>
+                                    <td>{{ $currency->symbol }}</td>
+                                    <td>
+                                        <form action="{{ route('admin.change.currency.rate', $currency->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <label>
+                                                <div class="iconed-input">
+                                                    <input type="text" name="rate" value="{{ $currency->rate }}"
+                                                        @if ($currency->code == 'USD') disabled @endif required />
+                                                    <button type="submit" class="icon"
+                                                        @if ($currency->code == 'USD') disabled @endif>
+                                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                            viewBox="0 0 20 20">
+                                                            <path
+                                                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                @error('rate')
+                                                    <span class="validate-msg invalid">{{ translation($message) }}</span>
+                                                @enderror
+                                            </label>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('admin.currency.toggle-active', $currency->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="active-btn {{ $currency->is_active ? 'active' : '' }}">
+                                                {{ $currency->is_active ? translation('active') : translation('inactive') }}
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td class="actions">
+                                        <div class="flex justify-center items-center space-x-4 text-sm">
+                                            <form action="{{ route('admin.currency.destroy', $currency->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" @if ($currency->code == 'USD') disabled @endif
+                                                    class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                                    aria-label="Delete">
+                                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5">
+                                    {{ translation('No data found.') }}
+                                </td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     </div>
 @endsection

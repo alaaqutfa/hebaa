@@ -198,10 +198,17 @@ if (! function_exists('getHeroProjects')) {
     }
 }
 
+if (! function_exists('getActiveCurrency')) {
+    function getActiveCurrency()
+    {
+        return Currency::active()->get();
+    }
+}
+
 if (! function_exists('getCurrency')) {
     function getCurrency()
     {
-        return Currency::active()->get();
+        return Currency::get();
     }
 }
 

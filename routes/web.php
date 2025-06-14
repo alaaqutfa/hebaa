@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\ArticlesController;
 use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\LanguagesController;
+use App\Http\Controllers\Web\CurrencyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
@@ -20,4 +21,5 @@ Route::middleware(['web', 'lang'])->group(function () {
     Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');
     Route::get('/project/{article:slug}', [ArticlesController::class, 'show'])->name('project.show');
     Route::get('/languages/switch/{code}', [LanguagesController::class, 'switch'])->name('languages.switch');
+    Route::get('/currency/switch/{code}', [CurrencyController::class, 'switch'])->name('currency.switch');
 });

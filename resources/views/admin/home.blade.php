@@ -258,7 +258,7 @@
             </header>
 
             <!-- Form -->
-            <form action="{{ route('admin.editHero') }}" method="POST">
+            <form action="{{ route('admin.editSetting') }}" method="POST">
                 @csrf
                 <input type="hidden" name="key" value="hero_project_1" />
                 <label>
@@ -294,7 +294,7 @@
             </header>
 
             <!-- Form -->
-            <form action="{{ route('admin.editHero') }}" method="POST">
+            <form action="{{ route('admin.editSetting') }}" method="POST">
                 @csrf
                 <input type="hidden" name="key" value="hero_project_2" />
                 <label>
@@ -330,7 +330,7 @@
             </header>
 
             <!-- Form -->
-            <form action="{{ route('admin.editHero') }}" method="POST">
+            <form action="{{ route('admin.editSetting') }}" method="POST">
                 @csrf
                 <input type="hidden" name="key" value="hero_project_3" />
                 <label>
@@ -366,7 +366,7 @@
             </header>
 
             <!-- Form -->
-            <form action="{{ route('admin.editHero') }}" method="POST">
+            <form action="{{ route('admin.editSetting') }}" method="POST">
                 @csrf
                 <input type="hidden" name="key" value="hero_project_4" />
                 <label>
@@ -402,7 +402,7 @@
             </header>
 
             <!-- Form -->
-            <form action="{{ route('admin.editHero') }}" method="POST">
+            <form action="{{ route('admin.editSetting') }}" method="POST">
                 @csrf
                 <input type="hidden" name="key" value="hero_project_5" />
                 <label>

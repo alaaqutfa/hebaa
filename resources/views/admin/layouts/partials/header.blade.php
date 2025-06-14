@@ -22,6 +22,28 @@
             </div>
         </div>
         <ul class="header-list">
+            <!-- languages-list -->
+            <li class="languages">
+                <select onchange="location.href=this.value">
+                    @foreach (getLanguage() as $lang)
+                        <option value="{{ route('languages.switch', $lang->code) }}"
+                            @if (app()->getLocale() === $lang->code) selected @endif>
+                            {{ $lang->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </li>
+            <!-- currencies-list -->
+            <li class="languages">
+                <select onchange="location.href=this.value">
+                    @foreach (getActiveCurrency() as $currency)
+                        <option value="{{ route('currency.switch', $currency->code) }}"
+                            @if (session('currency', 'USD') === $currency->code) selected @endif>
+                            {{ translation($currency->name) }}
+                        </option>
+                    @endforeach
+                </select>
+            </li>
             <!-- Theme toggler -->
             <li class="theme-toggler">
                 <button class="" @click="toggleTheme" aria-label="Toggle color mode">
@@ -38,17 +60,6 @@
                         </svg>
                     </template>
                 </button>
-            </li>
-            <!-- languages-list -->
-            <li class="languages">
-                <select onchange="location.href=this.value">
-                    @foreach (getLanguage() as $lang)
-                        <option value="{{ route('languages.switch', $lang->code) }}"
-                            @if (app()->getLocale() === $lang->code) selected @endif>
-                            {{ $lang->name }}
-                        </option>
-                    @endforeach
-                </select>
             </li>
             <!-- Notifications menu -->
             <li class="notifications-menu">

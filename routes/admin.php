@@ -56,7 +56,10 @@ Route::middleware(['web', 'admin', 'lang'])->prefix('admin')->name('admin.')->gr
 
     // * Setting *//
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
-    Route::post('/setting/hero', [SettingController::class, 'editHero'])->name('editHero');
+    Route::post('/setting/hero', [SettingController::class, 'editSetting'])->name('editSetting');
+    Route::patch('/setting/currency/{currency}/rate', [SettingController::class, 'changeCurrencyRate'])->name('change.currency.rate');
+    Route::patch('/setting/currency/{currency}/toggle-active', [SettingController::class, 'toggleCurrencyActive'])->name('currency.toggle-active');
+    Route::delete('/setting/currency/{id}', [SettingController::class, 'destroyCurrency'])->name('currency.destroy');
     // * Setting End *//
 
     // * Languages *//
