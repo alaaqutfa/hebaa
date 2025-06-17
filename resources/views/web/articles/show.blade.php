@@ -235,9 +235,15 @@
                                             @if (Auth::check() && Auth::user()->id === $comment->user->id) style="background:#f0f0f0;" @endif>
                                             <div class="comment-header">
                                                 <div class="user-info">
-                                                    <img src="{{ asset('storage/' . $comment->user->avatar) }}"
-                                                        onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'"
-                                                        alt="User avatar" loading="lazy">
+                                                    @if (Auth::check())
+                                                        <img src="{{ asset('storage/' . $comment->user->avatar) }}"
+                                                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'"
+                                                            alt="User avatar" loading="lazy">
+                                                    @else
+                                                        <img src="{{ asset('assets/img/placeholder.jpg') }}"
+                                                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'"
+                                                            alt="User avatar" loading="lazy">
+                                                    @endif
                                                     <div class="meta">
                                                         <h4 class="name">{{ $comment->name }}</h4>
                                                         <span class="date">
