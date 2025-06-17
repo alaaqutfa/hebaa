@@ -3584,6 +3584,13 @@ a.category:hover {
   font-weight: 600;
   padding: 0 0 0 10px;
   margin: 0 0 20px 0;
+}
+
+[dir="rtl"] .widget-title {
+  border-right: 4px solid var(--accent-color);
+}
+
+[dir="ltr"] .widget-title {
   border-left: 4px solid var(--accent-color);
 }
 
