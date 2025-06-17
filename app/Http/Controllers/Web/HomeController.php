@@ -14,7 +14,9 @@ class HomeController
         $heroProjects  = getHeroProjects();
         $featured      = getFeaturedArticle();
         $categories    = getCategory();
-        $latestProject = Article::published()->paginate(9);
+        $latestProject = Article::published()
+            ->latest('date')
+            ->paginate(9);
 
         $activeCampaigns = DonationCampaign::where('status', 'active')
             ->where(function ($q) {
@@ -23,7 +25,7 @@ class HomeController
             })
             ->orderBy('start_date', 'desc')
             ->paginate(9);
-        return view("web.home", compact("heroProjects", "featured", "categories", "activeCampaigns","latestProject"));
+        return view("web.home", compact("heroProjects", "featured", "categories", "activeCampaigns", "latestProject"));
     }
 
     public function about()

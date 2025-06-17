@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     // ✅ تحميل العلاقات تلقائياً
-    protected $with = ['user', 'categories', 'images'];
+    protected $with = ['user', 'categories', 'images', 'comments'];
 
     // ✅ التحويل التلقائي للحقول الزمنية إلى Carbon
     protected $casts = [
@@ -37,6 +37,11 @@ class Article extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function images()

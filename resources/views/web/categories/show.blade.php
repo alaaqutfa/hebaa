@@ -1,4 +1,36 @@
+@php
+    $title = translation(getSetting('site_title'));
+    $description = Str::limit(strip_tags(contentTranslation('about', '')), 150);
+    $image = asset('assets/img/logo.png');
+    $url = url()->current();
+@endphp
+
 @extends('web.layouts.app')
+
+
+@push('meta')
+    {{-- ✅ SEO Basics --}}
+    <title>{{ $title }}</title>
+    <meta name="description" content="{{ $description }}">
+    <meta name="keywords"
+        content="منظمة غير حكومية, العمل الإنساني, التنمية المستدامة, الإغاثة, الفقر, النزوح, تمكين المرأة, دعم التعليم, الرعاية الصحية, حقوق الإنسان, العراق, الشراكات الدولية, حملات إغاثة, المجتمع المدني, المساعدات الطارئة, بناء القدرات, التنمية المجتمعية, الاستجابة للأزمات, اللاجئين, مشاريع إنسانية">
+    <meta name="author" content="{{ $title }}">
+
+    {{-- ✅ Open Graph (Facebook, LinkedIn, WhatsApp, etc.) --}}
+    <meta property="og:title" content="{{ $title }}" />
+    <meta property="og:description" content="{{ $description }}" />
+    <meta property="og:image" content="{{ $image }}" />
+    <meta property="og:url" content="{{ $url }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="{{ $title }}" />
+
+    {{-- ✅ Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $description }}">
+    <meta name="twitter:image" content="{{ $image }}">
+    <meta name="twitter:url" content="{{ $url }}">
+@endpush
 
 @section('title', translation($category->name))
 
@@ -71,8 +103,10 @@
                     <div class="search-widget widget-item">
 
                         <h3 class="widget-title">{{ translation('Search') }}</h3>
-                        <form action="">
-                            <input type="search" class="w-full focus:border-none focus:outline-none focus:ring-0" />
+                        <form action="{{ route('search') }}" method="GET">
+                            @csrf
+                            <input type="search" name="q" placeholder="{{ translation('Search...') }}"
+                                class="w-full focus:border-none focus:outline-none focus:ring-0" />
                             <button type="submit" title="{{ translation('Search') }}">
                                 <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"

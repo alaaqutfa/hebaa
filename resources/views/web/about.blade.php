@@ -1,4 +1,35 @@
+@php
+    $title = translation(getSetting('site_title'));
+    $description = Str::limit(strip_tags(contentTranslation('about', '')), 150);
+    $image = asset('assets/img/logo.png');
+    $url = url()->current();
+@endphp
+
 @extends('web.layouts.app')
+
+@push('meta')
+    {{-- ✅ SEO Basics --}}
+    <title>{{ $title }}</title>
+    <meta name="description" content="{{ $description }}">
+    <meta name="keywords"
+        content="منظمة غير حكومية, العمل الإنساني, التنمية المستدامة, الإغاثة, الفقر, النزوح, تمكين المرأة, دعم التعليم, الرعاية الصحية, حقوق الإنسان, العراق, الشراكات الدولية, حملات إغاثة, المجتمع المدني, المساعدات الطارئة, بناء القدرات, التنمية المجتمعية, الاستجابة للأزمات, اللاجئين, مشاريع إنسانية">
+    <meta name="author" content="{{ $title }}">
+
+    {{-- ✅ Open Graph (Facebook, LinkedIn, WhatsApp, etc.) --}}
+    <meta property="og:title" content="{{ $title }}" />
+    <meta property="og:description" content="{{ $description }}" />
+    <meta property="og:image" content="{{ $image }}" />
+    <meta property="og:url" content="{{ $url }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="{{ $title }}" />
+
+    {{-- ✅ Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $description }}">
+    <meta name="twitter:image" content="{{ $image }}">
+    <meta name="twitter:url" content="{{ $url }}">
+@endpush
 
 @section('title', translation('About us'))
 
@@ -23,24 +54,24 @@
                         {!! contentTranslation(
                             'about',
                             'Heba Foundation for Sustainable Development
-                                          Heba is a non-governmental organization established in Iraq in 2015 to respond to the needs of those
-                                          affected by disasters and wars in Iraq, as well as to support the poor and underprivileged.
+                                                                  Heba is a non-governmental organization established in Iraq in 2015 to respond to the needs of those
+                                                                  affected by disasters and wars in Iraq, as well as to support the poor and underprivileged.
 
-                                          The foundation operates in the development, humanitarian, and relief sectors—starting from planning
-                                          to execution—in areas that require intervention, in coordination with its local and international
-                                          partners.
+                                                                  The foundation operates in the development, humanitarian, and relief sectors—starting from planning
+                                                                  to execution—in areas that require intervention, in coordination with its local and international
+                                                                  partners.
 
-                                          The organization has a team with over 15 years of accumulated experience. Its workforce includes
-                                          more than 25 staff members comprising administrative, engineering, and medical teams, in addition to
-                                          volunteer teams during project implementation phases.
+                                                                  The organization has a team with over 15 years of accumulated experience. Its workforce includes
+                                                                  more than 25 staff members comprising administrative, engineering, and medical teams, in addition to
+                                                                  volunteer teams during project implementation phases.
 
-                                          Heba also provides administrative and field solutions to its partners that align with the realities
-                                          of the targeted communities, ensuring a response that meets international standards with a local
-                                          perspective.
+                                                                  Heba also provides administrative and field solutions to its partners that align with the realities
+                                                                  of the targeted communities, ensuring a response that meets international standards with a local
+                                                                  perspective.
 
-                                          Our foundation aspires to establish genuine and effective partnerships with international and local
-                                          donors in planning and implementing humanitarian, developmental, and relief programs—serving
-                                          humanity with a neutral and humanitarian vision.',
+                                                                  Our foundation aspires to establish genuine and effective partnerships with international and local
+                                                                  donors in planning and implementing humanitarian, developmental, and relief programs—serving
+                                                                  humanity with a neutral and humanitarian vision.',
                         ) !!}
                     </p>
                 </div>
