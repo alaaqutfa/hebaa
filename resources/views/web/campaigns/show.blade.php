@@ -1,6 +1,6 @@
 @php
     $title = translation($campaign->title);
-    $description = Str::limit(strip_tags(contentTranslation($campaign->id, $campaign->content)), 150);
+    $description = Str::limit(strip_tags(contentTranslation($campaign->id, defaultValue: $campaign->description)), 150);
     $image = asset('storage/' . $campaign->image) ?? asset('assets/img/logo.png');
     $url = url()->current();
     $shareTitle = translation($campaign->title);
@@ -92,7 +92,7 @@
 
                                 <div class="content">
                                     <p>
-                                        {{ $campaign->description }}
+                                        {!! $campaign->description !!}
                                     </p>
                                 </div>
 
@@ -285,21 +285,20 @@
                                     <label for="amount" class="mb-1 font-medium">
                                         {{ translation('Donation Amount') }} *
                                     </label>
-                                    @if ($campaign->allow_full_donation)
-                                        <input type="number" name="amount" id="amount"
-                                            value="{{ $campaign->target_amount }}"
-                                            placeholder="{{ translation('Enter the amount of donation you wish to donate') }}"
-                                            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            readonly required />
-                                    @else
-                                        <input type="number" name="amount" id="amount"
-                                            value="{{ $campaign->single_amount }}"
-                                            placeholder="{{ translation('Enter the amount of donation you wish to donate') }}"
-                                            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            readonly required />
-                                    @endif
+                                    <input type="number" name="amount" id="amount"
+                                        value="{{ $campaign->single_amount }}" min="{{ $campaign->single_amount }}"
+                                        placeholder="{{ translation('Enter the amount of donation you wish to donate') }}"
+                                        class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        readonly required />
                                 </div>
-
+                                @if ($campaign->allow_full_donation)
+                                    <div class="flex justify-start items-center gap-2 mt-2">
+                                        <input type="checkbox" name="change_amount" id="change_amount_checkbox" />
+                                        <label for="change_amount_checkbox" class="font-medium">
+                                            {{ translation('Change the donation amount') }}
+                                        </label>
+                                    </div>
+                                @endif
                                 <div class="col-span-1 flex flex-col">
                                     <label for="comment" class="mb-1 font-medium">
                                         {{ translation('Your Comment') }}
@@ -454,3 +453,17 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox = document.getElementById('change_amount_checkbox');
+            const amountInput = document.getElementById('amount');
+            if (checkbox && amountInput) {
+                checkbox.addEventListener('change', function() {
+                    amountInput.readOnly = !this.checked;
+                });
+            }
+        });
+    </script>
+@endpush
