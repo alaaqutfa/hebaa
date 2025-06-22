@@ -2,10 +2,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Article;
+use App\Models\Donation;
 use App\Models\DonationCampaign;
 use App\Models\Translation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController
 {
@@ -17,7 +19,6 @@ class HomeController
         $latestProject = Article::published()
             ->latest('date')
             ->paginate(9);
-
         $activeCampaigns = DonationCampaign::where('status', 'active')
             ->where(function ($q) {
                 $q->whereNull('end_date')
@@ -77,5 +78,16 @@ class HomeController
         }
 
         return view('web.search', compact('results', 'query'));
+    }
+
+    public function campaign(DonationCampaign $campaign)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('auth.get.login')->with('error', 'Sorry, you should login first.');
+        }
+        $donation = Donation::where('campaign_id',$campaign->id)->paginate(5);
+        $recent = DonationCampaign::orderBy('start_date', 'desc')->get()->take(5);
+        $recentArticles  = getFeaturedArticle();
+        return view('web.campaigns.show', compact('campaign','donation','recent','recentArticles'));
     }
 }

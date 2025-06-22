@@ -350,8 +350,10 @@
             <!-- Section Title -->
             <div class="container mx-auto section-title" data-aos="fade-up">
                 <h2>{{ translation('Donation Campaigns') }}</h2>
-                <div> <span
-                        class="description-title">{{ translation("You don't have to be rich to make a difference; your donation means a lot.") }}</span>
+                <div>
+                    <span class="description-title">
+                        {{ translation("You don't have to be rich to make a difference; your donation means a lot.") }}
+                    </span>
                 </div>
             </div><!-- End Section Title -->
 
@@ -363,14 +365,10 @@
                             <img src="{{ asset('storage/' . $campaign->image) }}"
                                 onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt=""
                                 class="w-full h-48 object-cover" loading="lazy">
-                            <div class="p-4">
-                                <div class="flex justify-between items-center text-sm text-gray-500 mb-2">
+                            <div class="flex justify-start items-start flex-col gap-2 p-2">
+                                <div class="w-full flex justify-between items-center text-sm text-gray-500">
                                     <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">
-                                        @isset($campaign->single_amount)
-                                            {{ format_currency($campaign->single_amount) }}
-                                        @else
-                                            {{ format_currency($campaign->target_amount) }}
-                                        @endisset
+                                        {{ format_currency($campaign->single_amount) }}
                                     </span>
                                     <div class="flex items-center gap-2">
                                         <span
@@ -389,10 +387,11 @@
                                         {{ $campaign->title }}
                                     </a>
                                 </h2>
-                                <p>
+                                <p class="line-clamp">
                                     {!! $campaign->description !!}
                                 </p>
-                                <a href="#">{{ translation('Donation') }}</a>
+                                <a href="{{ route('campaign.show', $campaign->id) }}"
+                                    class="donation-btn">{{ translation('Donation') }}</a>
                             </div>
                         </div>
                     @endforeach

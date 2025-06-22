@@ -17,6 +17,7 @@ Route::middleware(['web', 'lang'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/search', [HomeController::class, 'search'])->name('search');
+    Route::get('/campaign/{campaign}', [HomeController::class, 'campaign'])->name('campaign.show');
     Route::get('/profile', [ProfileController::class, 'clientProfile'])->name('profile');
     Route::put('/profile/{id}', [ProfileController::class, 'updateProfile'])->name('update.profile');
     Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');

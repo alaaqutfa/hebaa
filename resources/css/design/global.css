@@ -64,6 +64,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  a.donation-btn {
+    color: #fff !important;
+  }
 }
 
 * {
@@ -270,6 +274,10 @@ label.phone-label > .iti {
 
 .textNowrap {
   @apply text-nowrap;
+}
+
+a.donation-btn {
+  @apply py-2 px-4 rounded-lg bg-[#008d3690] hover:bg-[#008d36] text-white hover:text-white my-4;
 }
 
 /** Global Style End **/

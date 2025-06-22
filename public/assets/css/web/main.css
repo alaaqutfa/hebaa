@@ -63,7 +63,8 @@ body {
   /* font-family: var(--default-font); */
 }
 
-a:not(.category) {
+a:not(.category),
+a:not(.donation-btn) {
   color: var(--accent-color);
   text-decoration: none;
   transition: 0.3s;

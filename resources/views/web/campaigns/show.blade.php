@@ -1,9 +1,9 @@
 @php
-    $title = translation($project->title);
-    $description = Str::limit(strip_tags(contentTranslation($project->id, $project->content)), 150);
-    $image = asset('storage/' . $project->image) ?? asset('assets/img/logo.png');
+    $title = translation($campaign->title);
+    $description = Str::limit(strip_tags(contentTranslation($campaign->id, $campaign->content)), 150);
+    $image = asset('storage/' . $campaign->image) ?? asset('assets/img/logo.png');
     $url = url()->current();
-    $shareTitle = translation($project->title);
+    $shareTitle = translation($campaign->title);
     $shareUrl = urlencode(url()->current());
     $shareText = urlencode($shareTitle . ' - ' . url()->current());
 @endphp
@@ -12,7 +12,8 @@
     {{-- ✅ SEO Basics --}}
     <title>{{ $title }}</title>
     <meta name="description" content="{{ $description }}">
-    <meta name="keywords" content="{{ implode(',', $project->categories->pluck('name')->toArray()) }}">
+    <meta name="keywords"
+        content="تبرع, حملة تبرع, دعم إنساني, العمل الخيري, صدقة, تبرع مالي, تبرع إلكتروني, مساعدة المحتاجين, دعم الفقراء, إغاثة, كفالة أيتام, علاج مرضى, زكاة, زكاة المال, كفالة أسر, دعم التعليم, حملة خيرية, بناء مسجد, سقيا الماء, بناء مدرسة, تبرعات العراق, منصة تبرع, مؤسسة خيرية, مشروع خيري, دعم عاجل, تبرع الآن, أهل الخير, مساعدة اللاجئين, التبرعات الخيرية, مشاريع خيرية" />
     <meta name="author" content="{{ translation(getSetting('site_title')) }}">
 
     {{-- ✅ Open Graph (Facebook, LinkedIn, WhatsApp, etc.) --}}
@@ -33,12 +34,9 @@
 
 @extends('web.layouts.app')
 
-@section('title', translation($project->title))
-
-
+@section('title', translation($campaign->title))
 
 @section('content')
-
     <div class="container mx-auto">
 
         <div class="project-content">
@@ -52,109 +50,56 @@
                         <article class="article">
 
                             <div class="hero-img" data-aos="zoom-in">
-                                <img src="{{ asset('storage/' . $project->image) }}" id="project-basic-image"
+                                <img src="{{ asset('storage/' . $campaign->image) }}" id="campaign-basic-image"
                                     onerror="this.src='{{ asset('assets/img/placeholder-rect.jpg') }}'"
                                     alt="Featured blog image" class="img-fluid" loading="lazy">
-                                <div class="meta-overlay">
-                                    <div class="meta-categories">
-                                        @if (count($project->categories) > 1)
-                                            <div class="init-swiper categories-slider" data-name="categories-swiper-config">
-                                                <div class="swiper-wrapper">
-                                                    @foreach ($project->categories as $category)
-                                                        <div class="swiper-slide flex justify-center items-center">
-                                                            <a href="{{ route('category.show', $category->slug) }}"
-                                                                class="category"
-                                                                style="text-wrap: nowrap;">{{ translation($category->name) }}</a>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        @else
-                                            <a href="{{ route('category.show', $project->categories[0]->slug) }}"
-                                                class="category">{{ translation($project->categories[0]->name) }}
-                                            </a>
-                                        @endif
-                                        {{-- <span class="divider">•</span>
-                                        <span class="reading-time"><i class="bi bi-clock"></i> 6 min read</span> --}}
-                                    </div>
-                                </div>
                             </div>
-
-                            @if (count($project->images) > 1)
-                                <div class="init-swiper project-images-slider my-6"
-                                    data-name="project-images-swiper-config">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($project->images as $img)
-                                            <div class="swiper-slide">
-                                                <button type="button" class="project-image-item"
-                                                    @click="changeProjectImage('{{ asset('storage/' . $img->image) }}')">
-                                                    <img src="{{ asset('storage/' . $img->image) }}" {{-- onerror="this.src='{{ asset('assets/img/placeholder-rect.jpg') }}'" --}}
-                                                        alt="Featured blog image" class="img-fluid" loading="lazy">
-                                                </button>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
 
                             <div class="article-content" data-aos="fade-up" data-aos-delay="100">
                                 <div class="content-header">
                                     <h1 class="title">
-                                        {{ translation($project->title) }}
+                                        {{ $campaign->title }}
                                     </h1>
 
                                     <div class="author-info">
-                                        <div class="author-details">
-                                            <img src="{{ asset('storage/' . $project->user->avatar) }}" alt="Author"
-                                                onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'"
-                                                class="author-img">
-                                            <div class="info">
-                                                <h4>{{ $project->user->name . ' ' . $project->user->last_name }}</h4>
-                                            </div>
+                                        <div class="amount">
+                                            <span
+                                                class="text-sm text-gray-800 font-medium">{{ translation('Target Amount') }}
+                                                :</span>
+                                            <span class="text-base text-gray-800 font-bold">
+                                                {{ format_currency($campaign->target_amount) }} /
+                                                {{ format_currency($campaign->single_amount) }}
+                                            </span>
                                         </div>
                                         <div class="post-meta flex justify-start items-center gap-2">
                                             <span class="date flex justify-center items-center gap-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="21"
-                                                    fill="currentColor" viewBox="0 0 448 512">
-                                                    <path
-                                                        d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z" />
-                                                </svg>
-                                                {{ $project->date }}
-                                            </span>
-                                            @isset($comments)
-                                                <span class="divider text-2xl">•</span>
-                                                <span class="comments flex justify-center items-center gap-2">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill-rule="evenodd"
-                                                            d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                                                            clip-rule="evenodd"></path>
+                                                <div class="flex items-center gap-2">
+                                                    <span
+                                                        class="text-xs">{{ \Carbon\Carbon::parse($campaign->start_date)->format('Y-m-d') }}</span>
+                                                    <svg fill="currentColor" class="w-5 h-5"
+                                                        style="transform: rotate(90deg);" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 320 512">
+                                                        <path
+                                                            d="M182.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L128 109.3l0 293.5L86.6 361.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 402.7l0-293.5 41.4 41.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-96-96z" />
                                                     </svg>
-                                                    {{ $comments->total() }}
-                                                </span>
-                                            @endisset
+                                                    <span
+                                                        class="text-xs">{{ \Carbon\Carbon::parse($campaign->end_date)->format('Y-m-d') }}</span>
+                                                </div>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="content">
                                     <p>
-                                        {!! contentTranslation($project->id, $project->content) !!}
+                                        {{ $campaign->description }}
                                     </p>
                                 </div>
 
                                 <div class="meta-bottom">
-                                    <div class="tags-section">
-                                        <h4>{{ translation('Related Topics') }}</h4>
-                                        <div class="tags">
-                                            @foreach ($project->categories as $category)
-                                                <a href="{{ route('category.show', $category->slug) }}"
-                                                    class="tag">#{{ translation($category->name) }}</a>
-                                            @endforeach
-                                        </div>
-                                    </div>
 
                                     <div class="share-section">
-                                        <h4>{{ translation('Share Project') }}</h4>
+                                        <h4>{{ translation('Share Campaign') }}</h4>
 
                                         <div class="social-links">
                                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}"
@@ -198,7 +143,7 @@
                                                 </svg>
                                             </a>
                                             <a href="javascript:void(0)"
-                                                onclick="navigator.clipboard.writeText('{{ $url }}'); alert({{ translation('The project link has been copied!') }})"
+                                                onclick="navigator.clipboard.writeText('{{ $url }}'); alert({{ translation('The campaign link has been copied!') }})"
                                                 class="copy">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25"
                                                     fill="currentColor" viewBox="0 0 448 512">
@@ -216,7 +161,7 @@
                     </div>
                 </section><!-- /Blog Details Section -->
 
-                @isset($comments)
+                @isset($donation)
                     <!-- Blog Comments Section -->
                     <section id="blog-comments" class="blog-comments section">
 
@@ -224,12 +169,16 @@
 
                             <div class="blog-comments-3">
                                 <div class="section-header">
-                                    <h3>{{ translation('Comments') }} <span
-                                            class="comment-count">({{ $comments->total() }})</span></h3>
+                                    <h3>
+                                        {{ translation('Comments') }}
+                                        <span class="comment-count">
+                                            ({{ $donation->total() }})
+                                        </span>
+                                    </h3>
                                 </div>
 
                                 <div class="comments-wrapper">
-                                    @foreach ($comments as $comment)
+                                    @foreach ($donation as $comment)
                                         <!-- Comment -->
                                         <article class="comment-card"
                                             @if (Auth::check() && Auth::user()->id === $comment->user->id) style="background:#f0f0f0;" @endif>
@@ -245,7 +194,9 @@
                                                             alt="User avatar" loading="lazy">
                                                     @endif
                                                     <div class="meta">
-                                                        <h4 class="name">{{ $comment->name }}</h4>
+                                                        <h4 class="name">
+                                                            {{ $comment->user->name . ' ' . $comment->user->last_name }}
+                                                        </h4>
                                                         <span class="date">
                                                             <svg xmlns="http://www.w3.org/2000/svg" height="24"
                                                                 width="21" fill="currentColor" viewBox="0 0 448 512">
@@ -264,7 +215,7 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <textarea name="comment" id="edit_comment"
-                                                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ $comment->comment }}</textarea>
+                                                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ $comment->message }}</textarea>
                                                     </form>
                                                     <div class="comment-actions">
                                                         <button class="action-btn like-btn"
@@ -293,15 +244,16 @@
                                                     </div>
                                                 @else
                                                     <p>
-                                                        {{ $comment->comment }}
+                                                        {{ $comment->message }}
                                                     </p>
                                                 @endif
                                             </div>
                                         </article>
                                     @endforeach
                                 </div>
-
-                                {{ $comments->links() }}
+                                <div class="w-full mt-6">
+                                    {{ $donation->links() }}
+                                </div>
                             </div>
 
                         </div>
@@ -317,47 +269,49 @@
                         <form action="{{ route('comments.store') }}" method="post" role="form">
                             @csrf
                             <div class="section-header">
-                                <h3>{{ translation('Share Your Thoughts') }}</h3>
+                                <h3>{{ translation('Donate Now') }}</h3>
                                 <p>
-                                    {{ translation('Your email address will not be published. Required fields are marked *') }}
+                                    {{ translation("You don't have to be rich to make a difference; your donation means a lot.") }}
                                 </p>
                             </div>
 
                             <div class="grid grid-cols-1 gap-4">
-                                <input type="hidden" name="article_id" value="{{ $project->id }}" />
-                                @if (Auth::check())
-                                    <input type="hidden" name="name"
-                                        value="{{ Auth::user()->name . ' ' . Auth::user()->last_name }}" required />
-                                    <input type="hidden" name="email" value="{{ Auth::user()->email }}" required />
-                                @else
-                                    <div class="flex flex-col">
-                                        <label for="name" class="mb-1 font-medium">{{ translation('Full Name') }}
-                                            *</label>
-                                        <input type="text" name="name" id="name" required
-                                            placeholder="{{ translation('Enter your full name') }}"
-                                            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
+                                <input type="hidden" name="campaign_id" value="{{ $campaign->id }}" />
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
+                                <input type="hidden" name="name"
+                                    value="{{ Auth::user()->name . ' ' . Auth::user()->last_name }}" required />
 
-                                    <div class="flex flex-col">
-                                        <label for="email" class="mb-1 font-medium">{{ translation('Email Address') }}
-                                            *</label>
-                                        <input type="email" name="email" id="email" required
-                                            placeholder="{{ translation('Enter your email address') }}"
-                                            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                @endif
+                                <div class="flex flex-col">
+                                    <label for="amount" class="mb-1 font-medium">
+                                        {{ translation('Donation Amount') }} *
+                                    </label>
+                                    @if ($campaign->allow_full_donation)
+                                        <input type="number" name="amount" id="amount"
+                                            value="{{ $campaign->target_amount }}"
+                                            placeholder="{{ translation('Enter the amount of donation you wish to donate') }}"
+                                            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            readonly required />
+                                    @else
+                                        <input type="number" name="amount" id="amount"
+                                            value="{{ $campaign->single_amount }}"
+                                            placeholder="{{ translation('Enter the amount of donation you wish to donate') }}"
+                                            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            readonly required />
+                                    @endif
+                                </div>
 
                                 <div class="col-span-1 flex flex-col">
-                                    <label for="comment" class="mb-1 font-medium">{{ translation('Your Comment') }}
-                                        *</label>
-                                    <textarea name="comment" id="comment" rows="5" required
+                                    <label for="comment" class="mb-1 font-medium">
+                                        {{ translation('Your Comment') }}
+                                    </label>
+                                    <textarea name="comment" id="comment" rows="5"
                                         placeholder="{{ translation('Write your thoughts here...') }}"
                                         class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                                 </div>
 
                                 <div class="col-span-1 text-center">
                                     <button type="submit" class="btn-submit">
-                                        {{ translation('send') }}
+                                        {{ translation('Donation') }}
                                     </button>
                                 </div>
                             </div>
@@ -413,36 +367,8 @@
                     @if (count($recent) > 0)
                         <div class="recent-posts-widget widget-item">
 
-                            <h3 class="widget-title">{{ translation('Recent Projects') }}</h3>
-                            @foreach ($recent as $r)
-                                @foreach ($r['articles'] as $project)
-                                    <div class="post-item">
-                                        <img src="{{ asset('storage/' . $project->image) }}"
-                                            onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt=""
-                                            class="flex-shrink-0">
-                                        <div class="px-3">
-                                            <h4>
-                                                <a href="{{ route('project.show', $project->slug) }}">
-                                                    {{ Str::limit(translation($project->title), 25) }}
-                                                </a>
-                                            </h4>
-                                            <time datetime="{{ \Carbon\Carbon::parse($project->date)->format('d-m-Y') }}">
-                                                {{ \Carbon\Carbon::parse($project->date)->format('d-m-Y') }}
-                                            </time>
-                                        </div>
-                                    </div><!-- End recent post item-->
-                                @endforeach
-                            @endforeach
-
-                        </div><!--/Recent Posts Widget -->
-                    @endif
-
-                    <!-- Recent Posts Widget -->
-                    @if (count($recentDonationCampaign) > 0)
-                        <div class="recent-posts-widget widget-item">
-
                             <h3 class="widget-title">{{ translation('Recent Campaigns') }}</h3>
-                            @foreach ($recentDonationCampaign as $campaign)
+                            @foreach ($recent as $campaign)
                                 <div class="post-item">
                                     <img src="{{ asset('storage/' . $campaign->image) }}"
                                         onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt=""
@@ -453,7 +379,7 @@
                                                 {{ Str::limit($campaign->title, 25) }}
                                             </a>
                                         </h4>
-                                        <div class="w-full flex justify-between items-center gap-4">
+                                        <div class="w-full flex justify-between items-center gap-2 text-gray-400">
                                             <time
                                                 datetime="{{ \Carbon\Carbon::parse($campaign->start_date)->format('d-m-Y') }}">
                                                 {{ \Carbon\Carbon::parse($campaign->start_date)->format('d-m-Y') }}
@@ -468,6 +394,32 @@
                                                 {{ \Carbon\Carbon::parse($campaign->end_date)->format('d-m-Y') }}
                                             </time>
                                         </div>
+                                    </div>
+                                </div><!-- End recent post item-->
+                            @endforeach
+
+                        </div><!--/Recent Posts Widget -->
+                    @endif
+
+                    <!-- Recent Posts Widget -->
+                    @if (count($recentArticles) > 0)
+                        <div class="recent-posts-widget widget-item">
+
+                            <h3 class="widget-title">{{ translation('Recent Projects') }}</h3>
+                            @foreach ($recentArticles as $project)
+                                <div class="post-item">
+                                    <img src="{{ asset('storage/' . $project->image) }}"
+                                        onerror="this.src='{{ asset('assets/img/placeholder.jpg') }}'" alt=""
+                                        class="flex-shrink-0">
+                                    <div class="px-3">
+                                        <h4>
+                                            <a href="{{ route('project.show', $project->slug) }}">
+                                                {{ Str::limit(translation($project->title), 25) }}
+                                            </a>
+                                        </h4>
+                                        <time datetime="{{ \Carbon\Carbon::parse($project->date)->format('d-m-Y') }}">
+                                            {{ \Carbon\Carbon::parse($project->date)->format('d-m-Y') }}
+                                        </time>
                                     </div>
                                 </div><!-- End recent post item-->
                             @endforeach
@@ -502,52 +454,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script type="application/json" class="project-images-swiper-config">
-        {
-          "slidesPerView": "auto",
-          "loop": true,
-          "speed": 800,
-          "autoplay": {
-              "delay": 2000
-          },
-          "spaceBetween": 10,
-          "freeMode": true,
-          "breakpoints": {
-              "640": {
-              "slidesPerView": 2
-              },
-              "768": {
-              "slidesPerView": 3
-              },
-              "1024": {
-              "slidesPerView": 5
-              }
-          }
-        }
-    </script>
-    <script type="application/json" class="categories-swiper-config">
-        {
-          "slidesPerView": "auto",
-          "loop": true,
-          "speed": 800,
-          "autoplay": {
-              "delay": 2000
-          },
-          "spaceBetween": 10,
-          "freeMode": true,
-          "breakpoints": {
-              "640": {
-              "slidesPerView": 2
-              },
-              "768": {
-              "slidesPerView": 3
-              },
-              "1024": {
-              "slidesPerView": 5
-              }
-          }
-        }
-    </script>
-@endpush
