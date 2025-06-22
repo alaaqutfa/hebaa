@@ -287,9 +287,10 @@
                                     </label>
                                     <input type="number" name="amount" id="amount"
                                         value="{{ $campaign->single_amount }}" min="{{ $campaign->single_amount }}"
+                                        max="{{ $campaign->target_amount }}"
                                         placeholder="{{ translation('Enter the amount of donation you wish to donate') }}"
                                         class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        readonly required />
+                                        readonly required onchange="validateAmount(this)" />
                                 </div>
                                 @if ($campaign->allow_full_donation)
                                     <div class="flex justify-start items-center gap-2 mt-2">
@@ -465,5 +466,17 @@
                 });
             }
         });
+
+        function validateAmount(input) {
+            const min = parseFloat(input.min);
+            const max = parseFloat(input.max);
+            const value = parseFloat(input.value);
+
+            if (isNaN(value) || value < min) {
+                input.value = min;
+            } else if (value > max) {
+                input.value = max;
+            }
+        }
     </script>
 @endpush
